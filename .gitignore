@@ -1,4 +1,10 @@
+.DS_Store
+node_modules
+npm-debug.log
+bower_components
+dist
 craft/app/
 craft/plugins/
-craft/storage/
+craft/storage/backups/
+craft/storage/runtime/
 craft/config/db.php
