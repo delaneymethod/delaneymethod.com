@@ -1,0 +1,13 @@
+{{> head}}
+{{#ifpage 'index'}}
+<body class="home">
+{{/ifpage}}
+{{#unlesspage 'index'}}
+<body>
+{{/unlesspage}}
+	{{> header}}
+	{{> body}}
+	{{> footer}}
+	{{> scripts}}
+</body>
+</html>

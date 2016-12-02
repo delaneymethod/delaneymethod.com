@@ -1,0 +1,29 @@
+PORT: 8000
+
+COMPATIBILITY:
+  - "last 2 versions"
+  - "ie >= 9"
+  - "ios >= 7"
+
+UNCSS_OPTIONS:
+  html:
+    - "src/**/*.html"
+  ignore:
+    - !!js/regexp ^\.is-.*
+
+PATHS:
+  src: 'src'
+  dist: 'dist'
+  assets:
+    - "src/assets/**/*"
+    - "!src/assets/{img,js,scss}/**/*"
+  fonts:
+    - "bower_components/materialize/fonts/roboto/**/*"
+  sass:
+    - "bower_components/materialize/sass"
+  javascriptES6:
+    - "bower_components/jquery/dist/jquery.js"
+    - "bower_components/materialize/js/parallax.js"
+  javascriptES5:
+    - "src/assets/js/!(app).js"
+    - "src/assets/js/app.js"

@@ -1,0 +1,77 @@
+@charset "utf-8";
+
+@import "variables";
+@import "materialize";
+
+html {
+	font-family: 'Roboto', Trebuchet, sans-serif;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+header {
+	.delaneymethod-logo {
+		width: 50px;
+		margin-right: 10px;
+	}
+
+	.delaneymethod-name {
+		font-size: 140%;
+		font-style: black;
+		font-weight: bold;
+	}
+
+	ul {
+		margin-right: -10px;
+	}
+}
+
+main {
+}
+
+footer {
+	margin-top: 0 !important;
+}
+
+.parallax-container {
+	line-height: 0;
+	height: auto;
+
+	.parallax {
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+}
+
+.parallax-container#intro {
+	min-height: 600px;
+
+	.col {
+		height: 600px;
+
+		.delaneymethod-logo {
+			width: 100px;
+			height: auto;
+		}
+	}
+}
+
+.parallax-container#what-we-do {
+	min-height: 300px;
+}
+
+.parallax-container#what-we-offer {
+	min-height: 300px;
+}
+
+.parallax-container#projects {
+	min-height: 300px;
+}
+
+.parallax-container#contact {
+	min-height: 300px;
+}
