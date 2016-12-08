@@ -36,11 +36,32 @@ DelaneyMethod = {
 			$('a, button').on('click', function () {
 				if ($(this).data('scroll-to')) {
 					const id = '#' + $(this).data('scroll-to');
-					$('html, body').animate({
-						scrollTop: ($(id).first().offset().top - 60)
-					}, 500);
+
+					DelaneyMethod.Page.scrollTo(id);
 				}
 			});
+
+			if (window.location.search.length) {
+				DelaneyMethod.Page.scrollTo('#request-call-back');
+
+				window.setTimeout(function () {
+					$('.thanks').fadeOut();
+				}, 5000);
+			}
+		},
+
+		scrollTo: function (id) {
+			$('html, body').animate({
+				scrollTop: ($(id).first().offset().top - 60)
+			}, 500);
+
+			const uri = window.location.toString();
+
+			if (uri.indexOf('?') > 0) {
+				const cleanUri = uri.substring(0, uri.indexOf('?'));
+
+				window.history.replaceState({}, document.title, cleanUri);
+			}
 		}
 	}
 };
