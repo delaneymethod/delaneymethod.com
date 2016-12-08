@@ -18,36 +18,28 @@ DelaneyMethod = {
 	Page: {
 		segments: [],
 		init: function () {
+			Materialize.fadeInImage('#intro');
+
+			$('.modal').modal({
+				dismissible: false
+			});
+
 			$('.parallax').parallax();
 
-			$('a[href$=".zip"],a[href$=".txt"],a[href$=".docx"],a[href$=".doc"],a[href$=".xls"],a[href$=".xlsx"],a[href$=".pdf"],a[href$=".ppt"],a[href$=".pptx"]').on('click', function () {
-				window.open(this.href);
-
-				return false;
+			$('.button-collapse').sideNav({
+				menuWidth: 210,
+				edge: 'right',
+				closeOnClick: true,
+				draggable: true
 			});
 
-			$('a').filter(function () {
-				return this.hostname && this.hostname !== location.hostname;
-			}).click(function () {
-				window.open(this.href);
-
-				return false;
-			});
-
-			$('a[href*="#"]:not([href="#"], .open)').on('click', function () {
-				if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
-					const target = $(this.hash);
-
-					target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-
-					if (target.length) {
-						$('html, body').animate({
-							scrollTop: (target.offset().top - 20)
-						}, 500);
-					}
+			$('a, button').on('click', function () {
+				if ($(this).data('scroll-to')) {
+					const id = '#' + $(this).data('scroll-to');
+					$('html, body').animate({
+						scrollTop: ($(id).first().offset().top - 60)
+					}, 500);
 				}
-
-				return false;
 			});
 		}
 	}
@@ -55,4 +47,8 @@ DelaneyMethod = {
 
 $(window).on('load', function () {
 	DelaneyMethod.Page.init();
+});
+
+$(window).bind('orientationchange', function () {
+	$('.button-collapse').sideNav('hide');
 });

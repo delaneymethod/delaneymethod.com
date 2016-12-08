@@ -21,9 +21,20 @@ PATHS:
     - "bower_components/materialize/fonts/roboto/**/*"
   sass:
     - "bower_components/materialize/sass"
+    - "src/assets/sass/font-awesome/**/*"
   javascriptES6:
     - "bower_components/jquery/dist/jquery.js"
+    - "bower_components/materialize/js/initial.js"
+    - "bower_components/materialize/js/global.js"
+    - "bower_components/materialize/js/animation.js"
+    - "bower_components/materialize/js/transitions.js"
     - "bower_components/materialize/js/parallax.js"
+    - "bower_components/materialize/js/forms.js"
+    - "bower_components/materialize/js/modal.js"
+    - "bower_components/materialize/js/tooltip.js"
+    - "bower_components/materialize/js/sideNav.js"
+    - "bower_components/materialize/js/hammer.min.js"
+    - "bower_components/materialize/js/jquery.hammer.js"
+    - "bower_components/materialize/js/velocity.min.js"
   javascriptES5:
-    - "src/assets/js/!(app).js"
     - "src/assets/js/app.js"
