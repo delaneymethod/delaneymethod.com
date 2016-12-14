@@ -3,6 +3,8 @@ node_modules
 npm-debug.log
 bower_components
 dist
+html/index.html
+html/assets/
 craft/app/
 craft/plugins/
 craft/storage/backups/

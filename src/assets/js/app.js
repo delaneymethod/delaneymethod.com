@@ -1,25 +1,10 @@
-/**
- *
- * @author		Sean Delaney
- * @company		DelaneyMethod
- */
-
 'use strict';
 
-let DelaneyMethod;
+var $ = window.jQuery.noConflict();
 
-const $ = this.jQuery.noConflict();
-
-if (DelaneyMethod === undefined) {
-	DelaneyMethod = {};
-}
-
-DelaneyMethod = {
+var DelaneyMethod = {
 	Page: {
-		segments: [],
 		init: function () {
-			Materialize.fadeInImage('#intro');
-
 			$('.modal').modal({
 				dismissible: false
 			});
@@ -35,7 +20,7 @@ DelaneyMethod = {
 
 			$('a, button').on('click', function () {
 				if ($(this).data('scroll-to')) {
-					const id = '#' + $(this).data('scroll-to');
+					var id = '#' + $(this).data('scroll-to');
 
 					DelaneyMethod.Page.scrollTo(id);
 				}
@@ -44,9 +29,11 @@ DelaneyMethod = {
 			if (window.location.search.length) {
 				DelaneyMethod.Page.scrollTo('#request-call-back');
 
-				window.setTimeout(function () {
+				var timer = window.setTimeout(function () {
 					$('.thanks').fadeOut();
 				}, 5000);
+
+				clearTimeout(timer);
 			}
 		},
 
@@ -55,10 +42,10 @@ DelaneyMethod = {
 				scrollTop: ($(id).first().offset().top - 60)
 			}, 500);
 
-			const uri = window.location.toString();
+			var uri = window.location.toString();
 
 			if (uri.indexOf('?') > 0) {
-				const cleanUri = uri.substring(0, uri.indexOf('?'));
+				var cleanUri = uri.substring(0, uri.indexOf('?'));
 
 				window.history.replaceState({}, document.title, cleanUri);
 			}

@@ -13,12 +13,13 @@ UNCSS_OPTIONS:
 
 PATHS:
   src: 'src'
-  dist: 'dist'
+  dist: 'html'
   assets:
     - "src/assets/**/*"
     - "!src/assets/{img,js,scss}/**/*"
   fonts:
     - "bower_components/materialize/fonts/roboto/**/*"
+    - "src/assets/fonts/**/*"
   sass:
     - "bower_components/materialize/sass"
     - "src/assets/sass/font-awesome/**/*"
@@ -26,12 +27,9 @@ PATHS:
     - "bower_components/jquery/dist/jquery.js"
     - "bower_components/materialize/js/initial.js"
     - "bower_components/materialize/js/global.js"
-    - "bower_components/materialize/js/animation.js"
-    - "bower_components/materialize/js/transitions.js"
     - "bower_components/materialize/js/parallax.js"
     - "bower_components/materialize/js/forms.js"
     - "bower_components/materialize/js/modal.js"
-    - "bower_components/materialize/js/tooltip.js"
     - "bower_components/materialize/js/sideNav.js"
     - "bower_components/materialize/js/hammer.min.js"
     - "bower_components/materialize/js/jquery.hammer.js"

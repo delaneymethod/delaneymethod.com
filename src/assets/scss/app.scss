@@ -37,12 +37,13 @@ abbr[data-original-title] {
 	cursor: help;
 }
 
-h2, h3, h4, h5, h6 {
+h2, h3, h4 {
 	color: $pink-darken-3;
 }
 
 h2 {
 	font-weight: 900;
+	margin: 1.78rem 0;
 
 	@media #{$medium-and-down} {
 		font-size: 25px;
@@ -59,6 +60,7 @@ h2 {
 
 h3 {
 	font-weight: 600;
+	margin: 1.46rem 0;
 
 	@media #{$medium-and-down} {
 		font-size: 20px;
@@ -75,6 +77,7 @@ h3 {
 
 h4 {
 	font-weight: 500;
+	margin: 1.14rem 0;
 
 	@media #{$medium-and-down} {
 		font-size: 18px;
@@ -86,22 +89,6 @@ h4 {
 
 	@media #{$large-and-up} {
 		font-size: 25px;
-	}
-}
-
-h5 {
-	font-weight: 400;
-
-	@media #{$medium-and-down} {
-		font-size: 20px;
-	}
-
-	@media #{$medium-and-up} {
-		font-size: 20px;
-	}
-
-	@media #{$large-and-up} {
-		font-size: 20px;
 	}
 }
 
@@ -163,6 +150,7 @@ a {
 
 .btn {
 	@include border-radius(100px);
+
 	letter-spacing: .5px;
 	font-weight: 900;
 
@@ -173,8 +161,37 @@ a {
 	i {
 		color: $white;
 		font-weight: 900;
-		margin-top: -4px;
 		vertical-align: middle;
+	}
+
+	@media #{$medium-and-down} {
+		font-size: 15px;
+		height: 36px;
+		line-height: 36px;
+
+		i {
+			margin-top: -2px;
+		}
+	}
+
+	@media #{$medium-and-up} {
+		font-size: 16px;
+		height: 46px;
+		line-height: 46px;
+
+		i {
+			margin-top: -3px;
+		}
+	}
+
+	@media #{$large-and-up} {
+		font-size: 17px;
+		height: 56px;
+		line-height: 56px;
+
+		i {
+			margin-top: -4px;
+		}
 	}
 }
 
@@ -277,6 +294,7 @@ main {
 			img {
 				width: 100%;
 				height: auto;
+				opacity: 0.9;
 			}
 		}
 	}
@@ -307,37 +325,23 @@ main {
 							height: auto;
 
 							@media #{$medium-and-down} {
-								display: none;
+								width: 60px;
 							}
 
 							@media #{$medium-and-up} {
-								display: none;
-								width: 70px;
+								width: 100px;
 							}
 
 							@media #{$large-and-up} {
-								display: inline-block;
-								width: 100px;
+								width: 140px;
 							}
 						}
 					}
 				}
 
 				h2 {
-					font-weight: 700;
+					font-weight: 900;
 					color: $white;
-
-					@media #{$medium-and-down} {
-						margin-top: -20px;
-					}
-
-					@media #{$medium-and-up} {
-						margin-top: -10px;
-					}
-
-					@media #{$large-and-up} {
-						margin-top: 20px;
-					}
 				}
 			}
 		}
@@ -382,27 +386,12 @@ main {
 	}
 
 	#contact-us {
-		height: 240px;
-
 		.row {
 			.col {
-				h3 {
-					@media #{$small-and-down} {
-						color: $teal-lighten-2;
-					}
-				}
-
 				h4 {
 					a {
 						color: $white;
 						font-size: inherit;
-						vertical-align: middle;
-
-						i {
-							color: $white;
-							margin-top: -3px;
-							vertical-align: middle;
-						}
 					}
 				}
 			}
@@ -457,7 +446,8 @@ main {
 	}
 
 	#trusted {
-		background-color: $teal-lighten-2;
+		background-color: color('teal', 'base');
+
 	}
 
 	#recommendations {
@@ -478,7 +468,17 @@ main {
 	}
 
 	#spacer {
-		height: 240px;
+		@media #{$medium-and-down} {
+			height: 100px;
+		}
+
+		@media #{$medium-and-up} {
+			height: 160px;
+		}
+
+		@media #{$large-and-up} {
+			height: 240px;
+		}
 	}
 
 	#request-call-back {
@@ -486,7 +486,7 @@ main {
 			.col {
 				form {
 					.row {
-						margin-bottom: -20px;
+						margin-bottom: 0;
 
 						.col {
 							margin-bottom: 20px;
@@ -534,8 +534,14 @@ main {
 							}
 
 							.valid {
-								border-bottom: 1px solid $gray;
+								border-bottom: 1px solid color('grey', 'base');
 								box-shadow: none;
+							}
+
+							.btn {
+								i {
+									margin-top: -2px;
+								}
 							}
 						}
 					}
@@ -567,19 +573,23 @@ main {
 }
 
 footer {
-	margin-top: 0 !important;
-
 	.container {
-		a {
-			color: $grey-darken-2;
-
-			&:hover {
-				color: $pink-darken-3;
-			}
-		}
-
 		.row {
+			margin-bottom: 0;
+
 			.col {
+				h4 {
+					margin-top: 20px;
+				}
+
+				a {
+					color: $grey-darken-2;
+
+					&:hover {
+						color: $pink-darken-3;
+					}
+				}
+
 				.material-icons {
 					margin-top: -1px;
 				}
@@ -622,11 +632,14 @@ footer {
 		}
 	}
 
-	.footer-copyright {
-		overflow: visible !important;
-
-		@media #{$medium-and-down} {
+	@media #{$medium-and-down} {
+		.rights,
+		.terms {
 			text-align: center;
+		}
+
+		.terms {
+			margin-top: -20px;
 		}
 	}
 }

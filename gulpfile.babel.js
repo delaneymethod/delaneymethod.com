@@ -7,7 +7,7 @@ import browser from 'browser-sync';
 import panini from 'panini';
 import yaml from 'js-yaml';
 import fs from 'fs';
-import rimraf from 'rimraf';
+import del from 'del';
 
 // Load all Gulp plugins into one variable
 const $ = plugins();
@@ -38,7 +38,6 @@ function server(done) {
 
 // Watch for changes to static assets, pages, Sass, and JavaScript
 function watch(done) {
-	gulp.watch(PATHS.assets, copy);
 	gulp.watch(PATHS.src + '/assets/scss/**/*.scss').on('all', gulp.series(styles, reload));
 	gulp.watch(PATHS.src + '/pages/**/*.html').on('all', gulp.series(pages, reload));
 	gulp.watch(PATHS.src + '/{layouts,partials}/**/*.html').on('all', gulp.series(refresh, pages, reload));
@@ -48,9 +47,12 @@ function watch(done) {
 	done();
 }
 
-// Delete the "dist" folder every time a build starts
-function reset(done) {
-	rimraf(PATHS.dist, done);
+// Delete the "html/assets" and "static" folders every time a build starts
+function reset() {
+	return del([
+		PATHS.dist + '/**/*.html',
+		PATHS.dist + '/assets'
+	]);
 }
 
 // Copy page templates into finished HTML files
@@ -67,7 +69,7 @@ function pages() {
 		.pipe(gulp.dest(PATHS.dist));
 }
 
-// Copy images to the "dist" folder - compressed in production
+// Copy images to the "html" folder - compressed in production
 function images() {
 	return gulp
 		.src(PATHS.src + '/assets/img/**/*')
@@ -77,7 +79,7 @@ function images() {
 		.pipe(gulp.dest(PATHS.dist + '/assets/img'));
 }
 
-// Copy fonts to the "dist" folder
+// Copy fonts to the "html" folder
 function fonts() {
 	return gulp
 		.src(PATHS.fonts)
@@ -87,8 +89,10 @@ function fonts() {
 // Run eslint on all the source files
 function linting() {
 	return gulp
-		.src([PATHS.src + '/**/*.js'])
-		.pipe($.eslint())
+		.src([PATHS.src + '/assets/js/app.js'])
+		.pipe($.eslint({
+			fix: true
+		}))
 		.pipe($.eslint.format())
 		.pipe($.eslint.failAfterError());
 }
@@ -100,11 +104,10 @@ function scripts() {
 	return gulp
 		.src(PATHS.javascriptES6.concat(PATHS.javascriptES5))
 		.pipe(jsES6)
-		.pipe($.babel())
+		.pipe($.babel({presets: ['es2015']}))
 		.pipe(jsES6.restore)
-		.pipe($.sourcemaps.init())
+		.pipe($.if(!PRODUCTION, $.sourcemaps.init()))
 		.pipe($.concat('app.js'))
-		.pipe($.if(PRODUCTION, $.uglify()))
 		.pipe($.if(!PRODUCTION, $.sourcemaps.write()))
 		.pipe(gulp.dest(PATHS.dist + '/assets/js'));
 }
@@ -113,31 +116,16 @@ function scripts() {
 function styles() {
 	return gulp
 		.src(PATHS.src + '/assets/scss/app.scss')
-		.pipe($.sourcemaps.init())
+		.pipe($.if(!PRODUCTION, $.sourcemaps.init()))
 		.pipe($.sass({
 			includePaths: PATHS.sass
-		})
-		.on('error', $.sass.logError))
+		}).on('error', $.util.log))
 		.pipe($.autoprefixer({
 			browsers: COMPATIBILITY
 		}))
-		.pipe($.if(PRODUCTION, $.uncss(UNCSS_OPTIONS)))
-		.pipe($.if(PRODUCTION, $.cssnano()))
 		.pipe($.if(!PRODUCTION, $.sourcemaps.write()))
 		.pipe(gulp.dest(PATHS.dist + '/assets/css'))
 		.pipe(browser.reload({ stream: true }));
-}
-
-// Copy files out of the "assets" folder - This task skips over the "img", "js", and "scss" folders
-function copy() {
-	return gulp
-		.src(PATHS.assets)
-		.pipe(gulp.dest(PATHS.dist + '/assets'));
-}
-
-// Deletes "assets/scss" folder
-function cleanup(done) {
-	rimraf(PATHS.dist + '/assets/scss', done);
 }
 
 // Reload the browser with BrowserSync
@@ -164,13 +152,11 @@ exports.fonts = fonts;
 exports.linting = linting;
 exports.scripts = scripts;
 exports.styles = styles;
-exports.copy = copy;
-exports.cleanup = cleanup;
 exports.reload = reload;
 exports.refresh = refresh;
 
-// Build the "dist" folder by running all of the below tasks
-gulp.task('build', gulp.series(reset, gulp.parallel(pages, images, fonts, linting, scripts, styles, copy), cleanup));
+// Build the "static" and "html/assets" folders by running all of the below tasks
+gulp.task('build', gulp.series(reset, gulp.parallel(pages, images, fonts, linting, scripts, styles)));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default', gulp.series('build', server, watch));
