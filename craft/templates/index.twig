@@ -1,495 +1,253 @@
-{% extends "_layout" %}
+{% extends '_layout' %}
 {% block content %}
 		<section class="section parallax-container" id="intro">
 			<div class="container">
 				<div class="row">
 					<div class="col s12 m12 l12 white-text center-align valign-wrapper">
 						<div class="valign">
-							<h1><a href="/" title="{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}"><img class="delaneymethod-logo" src="/assets/img/delaneymethod.png" alt="{{ siteName }} Logo"></a></h1>
-							<h2>Bespoke Web Applications with a focus on both front-end and back-end Web Development</h2>
-							<a class="btn btn-large teal lighten-2" href="javascript:void(0);" title="Find Out More" data-scroll-to="about-us"><i class="material-icons">arrow_downward</i>&nbsp;Find Out More</a>
+							<h1><a href="/" title="{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}"><img class="delaneymethod-logo" src="{{ baseAssetsUrl }}img/delaneymethod.png" alt="{{ siteName }} Logo"></a></h1>
+							{% if entry.heroHeading is defined and entry.heroHeading | length %}
+							<h2>{{ entry.heroHeading }}</h2>
+							{% endif %}
+							{% if entry.heroCallToActionLabel is defined and entry.heroCallToActionLabel | length %}
+							<a class="btn btn-large teal" href="javascript:void(0);" title="Find Out More" data-scroll-to="about-us"><i class="material-icons">arrow_downward</i>&nbsp;{{ entry.heroCallToActionLabel }}</a>
+							{% endif %}
 						</div>
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
 			</div>
+			{% set heroImage = entry.heroImage.first() %}
+			{% if heroImage is defined and heroImage | length %}
 			<div class="parallax">
-				<img src="/assets/img/pexels-photo-41227.jpg">
+				<img src="{{ heroImage.url }}">
 			</div>
+			{% endif %}
 		</section>
 		<section class="section" id="about-us">
 			<div class="container">
 				<div class="row">
 					<div class="col s12 m12 offset-l2 l8 center-align">
-						<h3 class="uppercase">What We Do</h3>
-						<p class="lead">Located in Aberdeen, Scotland we work locally and remotely with clients worldwide on projects of all types and sizes - Information Technology, Banking, Oil &amp; Gas, Housing Developments, Tourism &amp; Travel Agencies, Musicians, Adventure Capitalists, Health &amp; Fitness and Sporting&nbsp;organisations.</p>
-						<p>We can offer Full-Stack Web Development on an hourly, daily or contract basis.</p>
+						{% if entry.whatWeDoHeading is defined and entry.whatWeDoHeading | length %}
+						<h3 class="uppercase">{{ entry.whatWeDoHeading }}</h3>
+						{% endif %}
+						{% if entry.whatWeDoLeadParagraph is defined and entry.whatWeDoLeadParagraph | length %}
+						<p class="lead">{{ entry.whatWeDoLeadParagraph }}</p>
+						{% endif %}
+						{{ entry.whatWeDoBodyTextTop }}
+						{% if entry.whatWeDoService is defined and entry.whatWeDoServices | length %}
 						<div class="row">
+							{% for service in entry.whatWeDoServices %}
 							<div class="col s12 m4 l4">
-								<h4>Hourly</h4>
-								<ul>
-									<li>Software questions</li>
-									<li>Smaller project alterations</li>
-									<li>Bug finding and squashing</li>
-								</ul>
+								{% if service.heading is defined and service.heading | length %}
+								<h4>{{ service.heading }}</h4>
+								{% endif %}
+								{{ service.bodyText }}
 							</div><!-- END .col //-->
-							<div class="col s12 m4 l4">
-								<h4>Daily</h4>
-								<ul>
-									<li>Server setups or installs</li>
-									<li>Longer lists of project edits</li>
-									<li>Smaller projects</li>
-								</ul>
-							</div><!-- END .col //-->
-							<div class="col s12 m4 l4">
-								<h4>Contract</h4>
-								<ul>
-									<li>Full CMS installations and setup</li>
-									<li>Longer term projects</li>
-									<li>Retainers / on call</li>
-								</ul>
-							</div><!-- END .col //-->
+							{% endfor %}
 						</div><!-- END .row //-->
-						<p>Whether you have a new web project, <br class="show-on-small-only hide-on-med-and-up">or an existing web project, we can help.</p>
+						{% endif %}
+						{{ entry.whatWeDoBodyTextBottom }}
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
 			</div>
 		</section>
-		<div class="divider"></div>
+		{% set communities = craft.entries.section('onlineCommunity').find() %}
+		{% if communities | length %}
 		<section class="section parallax-container" id="online-communities">
 			<div class="container">
 				<div class="row">
 					<div class="col s12 m12 offset-l2 l8 center-align">
-						<h3 class="uppercase">Check our Questions and Answers</h3>
+						{% if entry.onlineCommunitiesHeading is defined and entry.onlineCommunitiesHeading | length %}
+						<h3 class="uppercase">{{ entry.onlineCommunitiesHeading }}</h3>
+						{% endif %}
 						<div class="row">
+							{% for community in communities %}
 							<div class="col s12 m12 l4">
-								<p><a href="http://stackoverflow.com/users/1584266/sean-delaney?tab=profile" title="Our activity on Stack Overflow" target="_blank"><img class="z-depth-5" src="/assets/img/stackoverflow.jpg" alt="Stack Overflow"></a></p>
+								{% set communityImage = community.image.first() %}
+								{% if communityImage is defined and communityImage | length %}
+								<p><a href="{{ community.profileUrl }}" title="{{ community.description }}" target="_blank"><img class="z-depth-5" src="{{ communityImage.url }}" alt="{{ community.title }}"></a></p>
+								{% endif %}
 							</div><!-- END .col //-->
-							<div class="col s12 m12 l4">
-								<p><a href="http://craftcms.stackexchange.com/users/170/sean-delaney?tab=profile" title="Our Craft CMS activity on Stack Exchange" target="_blank"><img class="z-depth-5" src="/assets/img/craftcms.jpg" alt="Craft CMS"></a></p>
-							</div><!-- END .col //-->
-							<div class="col s12 m12 l4">
-								<p><a href="http://expressionengine.stackexchange.com/users/679/sean-delaney?tab=profile" title="Our ExpressionEngine activity on Stack Exchange" target="_blank"><img class="z-depth-5" src="/assets/img/expressionengine.jpg" alt="ExpressionEngine"></a></p>
-							</div><!-- END .col //-->
+							{% endfor %}
 						</div><!-- END .row //-->
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
 			</div>
+			{% set onlineCommunitiesImage = entry.onlineCommunitiesImage.first() %}
+			{% if onlineCommunitiesImage is defined and onlineCommunitiesImage | length %}
 			<div class="parallax">
-				<img src="/assets/img/pexels-photo-90807.jpg">
+				<img src="{{ onlineCommunitiesImage.url }}">
 			</div>
+			{% endif %}
 		</section>
-		<div class="divider"></div>
+		{% endif %}
+		{% if entry.whatMakesUsDifferentValues is defined and entry.whatMakesUsDifferentValues | length %}
 		<section class="section" id="what-makes-us-different">
 			<div class="container">
 				<div class="row">
-					<div class="col s12 m12 offset-l2 l8">
-						<h3 class="uppercase center-align">What Makes Us Different</h3>
+					<div class="col s12 m12 offset-l1 l10">
+						{% if entry.whatMakesUsDifferentHeading is defined and entry.whatMakesUsDifferentHeading | length %}
+						<h3 class="uppercase center-align">{{ entry.whatMakesUsDifferentHeading }}</h3>
+						{% endif %}
 						<div class="row">
+							{% if entry.whatMakesUsDifferentValues.type('valuesLeft') is defined and entry.whatMakesUsDifferentValues.type('valuesLeft') | length %}
 							<div class="col s12 m6 l6">
 								<ul>
-									<li><i class="material-icons">check_box</i>&nbsp;We have over 14 years experience.</li>
-									<li><i class="material-icons">check_box</i>&nbsp;We provide high quality bespoke work.</li>
-									<li><i class="material-icons">check_box</i>&nbsp;We use the latest technology stacks.</li>
-									<li><i class="material-icons">check_box</i>&nbsp;We have a proven track record of getting the job done.</li>
-									<li><i class="material-icons">check_box</i>&nbsp;We only work on one project at a time so you have our full attention.</li>
+									{% for value in entry.whatMakesUsDifferentValues.type('valuesLeft') %}
+									<li><i class="material-icons">check_box</i>&nbsp;{{ value.valueTitle }}</li>
+									{% endfor %}
 								</ul>
 							</div>
+							{% endif %}
+							{% if entry.whatMakesUsDifferentValues.type('valuesRight') is defined and entry.whatMakesUsDifferentValues.type('valuesRight') | length %}
 							<div class="col s12 m6 l6">
 								<ul>
-									<li><i class="material-icons">check_box</i>&nbsp;We can work locally and remotely.</li>
-									<li><i class="material-icons">check_box</i>&nbsp;We work across multiple timezones.</li>
-									<li><i class="material-icons">check_box</i>&nbsp;We’re committed to long term client relationships.</li>
-									<li><i class="material-icons">check_box</i>&nbsp;We just keep things simple and lean.</li>
-									<li><i class="material-icons">check_box</i>&nbsp;We have strong communication and motivation throughout.</li>
+									{% for value in entry.whatMakesUsDifferentValues.type('valuesRight') %}
+									<li><i class="material-icons">check_box</i>&nbsp;{{ value.valueTitle }}</li>
+									{% endfor %}
 								</ul>
-							</div><!-- END .col //-->
+							</div>
+							{% endif %}
 						</div><!-- END .row //-->
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
 			</div>
 		</section>
-		<section class="section" id="recommendations">
-			<div class="container">
-				<div class="row">
-					<div class="col s12 m12 l6">
-						<blockquote>
-							<p>Sean is a well rounded detail-oriented engineer that is capable of anything he puts his mind to. I would recommend Sean for any software engineering project that would utilize his skills.</p>
-							<cite>Nida Gaila - Project Manager / Sr. Business Analyst</cite>
-						</blockquote>
-					</div><!-- END .col //-->
-					<div class="col s12 m12 l6">
-						<blockquote>
-							<p>Sean always impressed with his dedication and thoughtfulness to how he tackled the challenging problems we faced working on a variety of front-end and back-end solutions at Under Armour. Besides being a strong developer, he was just great to work with which makes him an asset to any engineering group.</p>
-							<cite>Gabe Roffman - Technical Leader and Architect</cite>
-						</blockquote>
-					</div><!-- END .col //-->
-				</div><!-- END .row //-->
-			</div>
-		</section>
+		{% endif %}
+		{% include '_recommendations' with { ids: [82, 83] } %}
 		<section class="section" id="our-toolkit">
 			<div class="container">
 				<div class="row">
 					<div class="col s12 m12 offset-l2 l8 center-align">
-						<h3 class="uppercase">Our Toolkit</h3>
-						<p>We have industry experience with all of them.</p>
+						{% if entry.ourToolkitHeading is defined and entry.ourToolkitHeading | length %}
+						<h3 class="uppercase">{{ entry.ourToolkitHeading }}</h3>
+						{% endif %}
+						{% if entry.ourToolkitBodyText is defined and entry.ourToolkitBodyText | length %}
+						{{ entry.ourToolkitBodyText }}
+						{% endif %}
+						{% if entry.ourToolkitSkill is defined and entry.ourToolkitSkill | length %}
 						<div class="row">
+							{% for block in entry.ourToolkitSkill.type('technologyStack') %}
 							<div class="col s12 m3 l3">
 								<ul>
-									<li class="chip">Node.js</li>
-									<li class="chip">Express.js</li>
-									<li class="chip">AngularJS</li>
-									<li class="chip">ReactJS</li>
-									<li class="chip">Reflux.js</li>
-									<li class="chip">Redux.js</li>
+									{% for technology in block.technologyStack %}
+									<li class="chip">{{ technology }}</li>
+									{% endfor %}
 								</ul>
 							</div><!-- END .col //-->
-							<div class="col s12 m3 l3">
-								<ul>
-									<li class="chip">MySQL</li>
-									<li class="chip">MongoDB</li>
-									<li class="chip">PostgreSQL</li>
-									<li class="chip">MSSQL</li>
-									<li class="chip">Sequelize</li>
-									<li class="chip">Redis</li>
-								</ul>
-							</div><!-- END .col //-->
-							<div class="col s12 m3 l3">
-								<ul>
-									<li class="chip">PHP</li>
-									<li class="chip">Laravel</li>
-									<li class="chip">CodeIgniter</li>
-									<li class="chip">Craft CMS</li>
-									<li class="chip">ExpressionEngine</li>
-									<li class="chip">WordPress</li>
-								</ul>
-							</div><!-- END .col //-->
-							<div class="col s12 m3 l3">
-								<ul>
-									<li class="chip">HTML</li>
-									<li class="chip">CSS</li>
-									<li class="chip">SCSS</li>
-									<li class="chip">Bootstrap</li>
-									<li class="chip">Foundation</li>
-									<li class="chip">Materialize</li>
-								</ul>
-							</div><!-- END .col //-->
+							{% if loop.index % 4 == 0 %}
+							<div class="row"></div>
+							{% endif %}
+							{% endfor %}
 						</div><!-- END .row //-->
-						<div class="row">
-							<div class="col s12 m3 l3">
-								<ul>
-									<li class="chip">JavaScript</li>
-									<li class="chip">jQuery</li>
-									<li class="chip">Lo-dash</li>
-									<li class="chip">Handlebars</li>
-									<li class="chip">XML</li>
-									<li class="chip">JSON</li>
-								</ul>
-							</div><!-- END .col //-->
-							<div class="col s12 m3 l3">
-								<ul>
-									<li class="chip">Babel</li>
-									<li class="chip">Gulp</li>
-									<li class="chip">Grunt</li>
-									<li class="chip">Webpack</li>
-									<li class="chip">NPM</li>
-									<li class="chip">Bower</li>
-								</ul>
-							</div><!-- END .col //-->
-							<div class="col s12 m3 l3">
-								<ul>
-									<li class="chip">Docker</li>
-									<li class="chip">Micro Services</li>
-									<li class="chip">gRPC</li>
-									<li class="chip">Protobuf</li>
-									<li class="chip">Kubernetes</li>
-									<li class="chip">Kafka</li>
-								</ul>
-							</div><!-- END .col //-->
-							<div class="col s12 m3 l3">
-								<ul>
-									<li class="chip">Apache</li>
-									<li class="chip">ngnix</li>
-									<li class="chip">.htaccess</li>
-									<li class="chip">SFTP</li>
-									<li class="chip">SSH</li>
-									<li class="chip">Unit Testing</li>
-								</ul>
-							</div><!-- END .col //-->
-						</div><!-- END .row //-->
-						<div class="row">
-							<div class="col s12 offset-m3 m3 offset-l3 l3">
-								<ul>
-									<li class="chip">RESTful API</li>
-									<li class="chip">Stripe API</li>
-									<li class="chip">Twitter API</li>
-									<li class="chip">Google API</li>
-									<li class="chip">Swagger API</li>
-									<li class="chip">Amazon API</li>
-								</ul>
-							</div><!-- END .col //-->
-							<div class="col s12 m3 l3">
-								<ul>
-									<li class="chip">Github</li>
-									<li class="chip">Git Tower</li>
-									<li class="chip">JIRA</li>
-									<li class="chip">Jenkins</li>
-									<li class="chip">Basecamp</li>
-									<li class="chip">Trello</li>
-								</ul>
-							</div><!-- END .col //-->
-						</div><!-- END .row //-->
+						{% endif %}
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
 			</div>
 		</section>
+		{% if entry.contactUsHeading is defined and entry.contactUsHeading | length %}
 		<section class="section parallax-container" id="contact-us">
 			<div class="container">
 				<div class="row">
 					<div class="col s12 m12 offset-l2 l8 center-align">
-						<h3 class="uppercase">Get in touch with us today</h3>
+						<h3 class="uppercase">{{ entry.contactUsHeading }}</h3>
 						<div class="row">
+							{% if general.telephoneNumber is defined and general.telephoneNumber | length %}
 							<div class="col s12 m6 l6">
-								<h4><a href="tel:07889571206" title="Call us"><i class="material-icons" aria-hidden="true">phone</i>&nbsp;+44 7889 571 206</a></h4>
+								<h4><a href="tel:{{ general.telephoneNumber }}" title="Call us">{{ general.telephoneNumber }}</a></h4>
 							</div><!-- END .col //-->
+							{% endif %}
+							{% if general.emailAddress is defined and general.emailAddress | length %}
 							<div class="col s12 m6 l6">
-								<h4><a href="mailto:hello@delaneymethod.com" title="Email us"><i class="material-icons" aria-hidden="true">email</i>&nbsp;hello@delaneymethod.com</a></h4>
+								<h4><a href="mailto:{{ general.emailAddress }}" title="Email us">{{ general.emailAddress }}</a></h4>
 							</div><!-- END .col //-->
+							{% endif %}
 						</div><!-- END .row //-->
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
 			</div>
+			{% set contactUsImage = entry.contactUsImage.first() %}
+			{% if contactUsImage is defined and contactUsImage | length %}
 			<div class="parallax">
-				<img src="/assets/img/pexels-photo-27665.jpg">
+				<img src="{{ contactUsImage.url }}">
 			</div>
+			{% endif %}
 		</section>
+		{% endif %}
+		{% set featuredProjects = craft.entries.section('project').featured('1').order('id').find() %}
+		{% if featuredProjects | length %}
 		<section class="section" id="featured-projects">
 			<div class="container">
 				<div class="row">
 					<div class="col s12 m12 offset-l2 l8">
-						<h3 class="uppercase center-align">Featured Projects</h3>
-						<div class="row project">
-							<div class="col s12 m4 l4">
-								<img class="responsive-img logo" src="/assets/img/underarmour.jpg" alt="Under Armour Logo">
-							</div><!-- END .col //-->
-							<div class="col s12 m8 l8">
-								<h4 class="uppercase">Under Armour</h4>
-								<p class="lead">Under Armour are a sports apparel brand based out of Baltimore, USA.</p>
-								<p>We worked with Under Armour’s in-house software developers and the talented team at Twin Technologies (Albany, USA).</p>
-								<p>We were engaged to provide front-end and back-end Web Development using a <abbr title="MongoDB, ExpressJS AngularJS and NodeJS">MEAN</abbr> stack on Under Armour’s B2C, B2B, ArmourBox, Endless Aisle and Apple Pay for Web projects.</p>
-								<ul class="stack">
-									<li class="chip">Node.js</li>
-									<li class="chip">Express.js</li>
-									<li class="chip">AngularJS</li>
-									<li class="chip">ReactJS</li>
-									<li class="chip">Reflux.js</li>
-									<li class="chip">Redux.js</li>
-									<li class="chip">Lo-dash</li>
-									<li class="chip">RESTful API</li>
-									<li class="chip">MongoDB</li>
-									<li class="chip">MSSQL</li>
-									<li class="chip">PostgreSQL</li>
-									<li class="chip">Sequelize</li>
-									<li class="chip">Redis</li>
-									<li class="chip">SCSS</li>
-									<li class="chip">HTML</li>
-									<li class="chip">Handlebars</li>
-									<li class="chip">Gulp</li>
-									<li class="chip">Babel</li>
-									<li class="chip">Bower</li>
-									<li class="chip">NPM</li>
-									<li class="chip">Docker</li>
-									<li class="chip">Micro Services</li>
-									<li class="chip">gRPC</li>
-									<li class="chip">Kafka</li>
-									<li class="chip">Protobuf</li>
-									<li class="chip">Kubernetes</li>
-									<li class="chip">Jenkins</li>
-									<li class="chip">Github</li>
-									<li class="chip">Unit Testing</li>
-									<li class="chip">CI</li>
-								</ul>
-								<p><a class="btn teal lighten-2" href="http://www.underarmour.com" title="Under Armour" target="_blank">Visit Under Armour&nbsp;<i class="material-icons">arrow_forward</i></a></p>
-							</div><!-- END .col //-->
-						</div><!-- END .row //-->
-						<div class="row-spacer"></div>
-						<div class="row project">
-							<div class="col s12 m4 l4 show-on-small">
-								<img class="responsive-img logo" src="/assets/img/craig-group.jpg" alt="Craig Group Logo">
-							</div><!-- END .col //-->
-							<div class="col s12 m8 l8">
-								<h4 class="uppercase">Craig Group</h4>
-								<p class="lead">Craig Group specialise in shipping, and the oil and gas industries and based in Aberdeen, Scotland with offices worldwide.</p>
-								<p>We were engaged to provide consultation, front-end and back-end Web Development using a <abbr title="Linux, Apache, MySQL and PHP">LAMP</abbr> stack on the main Craig Group website, including a number of other web projects including Kings Links, Craig International Supplies, eBuy, iConnect, weConnect and Integration Management System.</p>
-								<p>We worked with ExpressionEngine content management system with a solid HTML and CSS foundation using the CSS grid framework Bootstrap.</p>
-								<ul class="stack">
-									<li class="chip">ExpressionEngine</li>
-									<li class="chip">PHP</li>
-									<li class="chip">MySQL</li>
-									<li class="chip">jQuery</li>
-									<li class="chip">JSON</li>
-									<li class="chip">XML</li>
-									<li class="chip">HTML</li>
-									<li class="chip">Bootstrap</li>
-									<li class="chip">Apache</li>
-									<li class="chip">.htaccess</li>
-									<li class="chip">SFTP</li>
-								</ul>
-								<p><a class="btn teal lighten-2" href="http://www.craig-group.com" title="Craig Group" target="_blank">Visit Craig Group&nbsp;<i class="material-icons">arrow_forward</i></a></p>
-							</div><!-- END .col //-->
-							<div class="col s12 m4 l4 hide-on-med-and-down hide-on-med-and-up">
-								<img class="responsive-img logo" src="/assets/img/craig-group.jpg" alt="Craig Group Logo">
-							</div><!-- END .col //-->
-						</div><!-- END .row //-->
+						{% if entry.featuredProjectsHeading is defined and entry.featuredProjectsHeading | length %}
+						<h3 class="uppercase center-align">{{ entry.featuredProjectsHeading }}</h3>
+						{% endif %}
+						{% for project in featuredProjects %}
+							{% include '_project' with { entry: project } %}
+						{% endfor %}
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
 			</div>
 		</section>
+		{% endif %}
+		{% if entry.trustedHeading is defined and entry.trustedHeading | length %}
 		<section class="section parallax-container" id="trusted">
 			<div class="container">
 				<div class="row">
-					<div class="col s12 m12 l12 center-align">
-						<h3 class="uppercase">Trusted by people at companies small and large</h3>
+					<div class="col offset-s1 s10 offset-m1 m10 l12 center-align">
+						<h3 class="uppercase">{{ entry.trustedHeading }}</h3>
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
 			<div>
 		</section>
+		{% endif %}
+		{% set projects = craft.entries.section('project').featured('not 1').order('id').find() %}
+		{% if projects | length %}
 		<section class="section" id="featured-projects">
 			<div class="container">
 				<div class="row">
 					<div class="col s12 m12 offset-l2 l8">
-						<div class="row project">
-							<div class="col s12 m4 l4">
-								<img class="responsive-img logo" src="/assets/img/beefitgyms.jpg" alt="Beefit Gyms Logo">
-							</div><!-- END .col //-->
-							<div class="col s12 m8 l8">
-								<h4 class="uppercase">Beefit Gyms</h4>
-								<p class="lead">Beefit Gyms are a franchise based in Limerick, Ireland offering the complete gym workout with the best fitness classes in town.</p>
-								<p>We were engaged to provide Logo, front-end and back-end Web Development using a <abbr title="Linux, Apache, MySQL and PHP">LAMP</abbr> stack for their main website.</p>
-								<p class="teal-text">We teamed up with Danielle McCormick, a talented young Graphic Designer based out of Belfast, Ireland to provide the logo for the project.</p>
-								<p>We designed and built a desktop and mobile website using ExpressionEngine content management system with a solid HTML5 and CSS3 foundation using a custom grid approach.</p>
-								<p>We also made use of Stripe’s Payment Gateway API for membership management.</p>
-								<ul class="stack">
-									<li class="chip">ExpressionEngine</li>
-									<li class="chip">PHP</li>
-									<li class="chip">MySQL</li>
-									<li class="chip">jQuery</li>
-									<li class="chip">JSON</li>
-									<li class="chip">XML</li>
-									<li class="chip">HTML</li>
-									<li class="chip">Grid Framework</li>
-									<li class="chip">Apache</li>
-									<li class="chip">.htaccess</li>
-									<li class="chip">SFTP</li>
-									<li class="chip">Stripe API</li>
-									<li class="chip">Github</li>
-								</ul>
-								<p><a class="btn teal lighten-2" href="http://www.beefitgyms.com" title="Beefit Gyms" target="_blank">Visit Beefit Gyms&nbsp;<i class="material-icons">arrow_forward</i></a></p>
-							</div><!-- END .col //-->
-						</div><!-- END .row //-->
-						<div class="row-spacer"></div>
-						<div class="row project">
-							<div class="col s12 m4 l4 show-on-small">
-								<img class="responsive-img logo" src="/assets/img/decom-north-sea.jpg" alt="Decom North Sea Logo">
-							</div><!-- END .col //-->
-							<div class="col s12 m8 l8">
-								<h4 class="uppercase">Decom North Sea</h4>
-								<p class="lead">Decom North Sea is the single topic, multi region membership organisation focussed on late life and decommissioning.</p>
-								<p>We were engaged by our friends at Mearns &amp; Gill to provide back-end Web Development for a <abbr title="Linux, Apache, MySQL and PHP">LAMP</abbr> stack.</p>
-								<p>We worked closely with their in-house designer who provided the front-end templates and integrated into Craft CMS.</p>
-								<ul class="stack">
-									<li class="chip">Craft CMS</li>
-									<li class="chip">PHP</li>
-									<li class="chip">MySQL</li>
-									<li class="chip">jQuery</li>
-									<li class="chip">JSON</li>
-									<li class="chip">XML</li>
-									<li class="chip">HTML</li>
-									<li class="chip">Foundation</li>
-									<li class="chip">Apache</li>
-									<li class="chip">.htaccess</li>
-									<li class="chip">SFTP</li>
-									<li class="chip">Github</li>
-								</ul>
-								<p><a class="btn teal lighten-2" href="http://www.decomnorthsea.com" title="Decom North Sea" target="_blank">Visit Decom North Sea&nbsp;<i class="material-icons">arrow_forward</i></a></p>
-							</div><!-- END .col //-->
-							<div class="col s12 m4 l4 hide-on-med-and-down hide-on-med-and-up">
-								<img class="responsive-img logo" src="/assets/img/decom-north-sea.jpg" alt="Decom North Sea Logo">
-							</div><!-- END .col //-->
-						</div><!-- END .row //-->
-						<div class="row-spacer"></div>
-						<div class="row project">
-							<div class="col s12 m4 l4">
-								<img class="responsive-img logo" src="/assets/img/tendeka.jpg" alt="Tendeka Logo">
-							</div><!-- END .col //-->
-							<div class="col s12 m8 l8">
-								<h4 class="uppercase">Tendeka</h4>
-								<p class="lead">Tendeka provides a diverse range of upper and lower completion systems and field-proven production optimisation technologies.</p>
-								<p>Fifth Ring engaged us to provide front-end and back-end Web Development on a <abbr title="Linux, Apache, MySQL and PHP">LAMP</abbr> stack.</p>
-								<p>Provided with Photoshop comps we created front-end templates and integrated these into ExpressionEngine content management system with a solid HTML5 and CSS3 foundation using the responsive front-end framework Bootstrap.</p>
-								<ul class="stack">
-									<li class="chip">ExpressionEngine</li>
-									<li class="chip">PHP</li>
-									<li class="chip">MySQL</li>
-									<li class="chip">jQuery</li>
-									<li class="chip">JSON</li>
-									<li class="chip">XML</li>
-									<li class="chip">HTML</li>
-									<li class="chip">Bootstrap</li>
-									<li class="chip">Apache</li>
-									<li class="chip">.htaccess</li>
-									<li class="chip">SFTP</li>
-									<li class="chip">Github</li>
-								</ul>
-								<p><a class="btn teal lighten-2" href="http://www.tendeka.com" title="Tendeka" target="_blank">Visit Tendeka&nbsp;<i class="material-icons">arrow_forward</i></a></p>
-							</div><!-- END .col //-->
-						</div><!-- END .row //-->
+						{% for project in projects %}
+							{% include '_project' with { entry: project } %}
+						{% endfor %}
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
 			</div>
 		</section>
 		<div class="divider"></div>
+		{% endif %}
+		{% if entry.butTheresMoreBodyText is defined and entry.butTheresMoreBodyText | length %}
 		<section class="section" id="but-theres-more">
 			<div class="container">
 				<div class="row">
 					<div class="col s12 m12 l12 center-align">
-						<h3 class="uppercase">But there’s more, much more!</h3>
-						<p>{{ siteName }} works under strict <abbr title="Non-Disclosure Agreement">NDA</abbr> with many more clients and agencies all over the World — either as a developer or a consultant.</p>
-						<p>Unfortunately we can't publicly display this work but we’re happy to discuss our experience of previous projects and how we can work anonymously (or not) with you.</p>
-						<p>Talk to us now about your project and we’ll see if we can help.</p>
+						<h3 class="uppercase">{{ entry.butTheresMoreHeading }}</h3>
+						{{ entry.butTheresMoreBodyText }}
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
 			</div>
 		</section>
-		<section class="section" id="recommendations">
-			<div class="container">
-				<div class="row">
-					<div class="col s12 m12 l6">
-						<blockquote>
-							<p>Sean was a fantastic co-worker who was always willing to put a great deal of time and energy into helping others. He was a great inspiration during the time we worked together and become a mentor for me in my early years as a developer. Sean has become a very close friend, and is someone whose willingness to learn drives his passion for new technologies and method within web development. He’s gutsy and fearless which makes him an ideal leader and a perfect co-worker who had displayed time and time again his outstanding belief in camaraderie within work teams. I hope one day to have the pleasure of working alongside Sean again in the future.</p>
-							<cite>Callum Hopkins - Web Developer</cite>
-						</blockquote>
-					</div><!-- END .col //-->
-					<div class="col s12 m12 l6">
-						<blockquote>
-							<p>Sean is one of the best programmers I have worked with. He is both organised and well structured in his work. His attention to detail means that the brief is always adhered to and his work is of the highest quality at all times. Sean is very forthcoming with solutions and is extremely helpful. Sean was a great member of the team and will be missed.</p>
-							<cite>Zara Vaughan - Digital Media Marketing Manager</cite>
-						</blockquote>
-					</div><!-- END .col //-->
-				</div><!-- END .row //-->
-			</div>
-		</section>
+		{% endif %}
+		{% include '_recommendations' with { ids: [84, 85] } %}
+		{% set spacerImage = entry.spacerImage.first() %}
+		{% if spacerImage is defined and spacerImage | length %}
 		<section class="section parallax-container" id="spacer">
 			<div class="parallax">
-				<img src="/assets/img/pexels-photo-40120.jpg">
+				<img src="{{ spacerImage.url }}">
 			</div>
 		</section>
+		{% endif %}
+		{% if entry.requestACallbackForm is defined and entry.requestACallbackForm  | length %}
 		<section class="section" id="request-call-back">
 			<div class="container">
 				<div class="row">
 					<div class="col s12 m12 l12 center-align">
-						<h3 class="uppercase">Request a Callback</h3>
-						<p>We’d love to answer any questions you have. Leave your details below and we will get straight back to you.</p>
-						{% if entry.form.hasErrors %}
+						{% if entry.requestACallbackHeading is defined and entry.requestACallbackHeading | length %}
+						<h3 class="uppercase">{{ entry.requestACallbackHeading }}</h3>
+						{% endif %}
+						{{ entry.requestACallbackBodyText }}
+						{% if entry.requestACallbackForm.hasErrors %}
 							<div class="row">
 								<div class="col s12 m12 l12">
 									<h4 class="red-text text-darken-2 uppercase center-align">Please Try Again</h4>
@@ -509,9 +267,9 @@
 				</div><!-- END .row //-->
 				<div class="row">
 					<div class="col s12 offset-m1 m10 offset-l2 l8">
-						{{ entry.form.renderTag() }}
+						{{ entry.requestACallbackForm.renderTag() }}
 							<div class="row">
-								{% for row in entry.form %}
+								{% for row in entry.requestACallbackForm %}
 									{% for field in row %}
 										{% set required = field.required ? ' required class="required"' : '' %}
 										{% if field.type == 'submit' %}
@@ -523,7 +281,7 @@
 										{% endif %}
 										<div class="col s12 {{ classNames }} input-field">
 											{% if field.type == 'submit' %}
-												<button class="btn btn-large teal lighten-2" id="{{ field.type }}" name="{{ field.type }}" type="{{ field.type }}"><i class="material-icons">message</i>&nbsp;Send Message</button>
+												<button class="btn btn-large teal" id="{{ field.type }}" name="{{ field.type }}" type="{{ field.type }}"><i class="material-icons">message</i>&nbsp;Send Message</button>
 											{% else %}
 												{% if (field.type == 'text') or (field.type == 'email') or (field.type == 'tel') %}
 													<input class="validate truncate" id="{{ field.handle }}" name="{{ field.handle }}" type="{{ field.type }}" value="{{ field.valueAsString }}" placeholder="{{ field.placeholder }}"{{ required }}>
@@ -536,20 +294,23 @@
 									{% endfor %}
 								{% endfor %}
 							</div><!-- END .row //-->
-						{{ entry.form.renderClosingTag }}
+						{{ entry.requestACallbackForm.renderClosingTag }}
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
 			</div>
 		</section>
+		{% endif %}
+		{% if entry.reliableHeading is defined and entry.reliableHeading | length %}
 		<section class="section" id="reliable">
 			<div class="container">
 				<div class="row">
-					<div class="col s12 m12 l12 center-align">
-						<h3 class="uppercase">Web Development you can depend on</h3>
+					<div class="col offset-s1 s10 offset-m1 m10 l12 center-align">
+						<h3 class="uppercase">{{ entry.reliableHeading }}</h3>
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
 			</div>
 		</section>
+		{% endif %}
 		<ul class="side-nav uppercase center-align" id="nav-mobile">
 			<li>
 				<div class="row">
@@ -619,4 +380,5 @@
 				<a class="modal-action modal-close btn-flat" href="javascript:void(0);" title="Agree">Agree</a>
 			</div>
 		</div>
+	</main>
 {% endblock %}

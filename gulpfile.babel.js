@@ -79,6 +79,16 @@ function images() {
 		.pipe(gulp.dest(PATHS.dist + '/assets/img'));
 }
 
+// Copy uploads to the "html" folder - compressed in production
+function uploads() {
+	return gulp
+		.src(PATHS.src + '/assets/uploads/**/*')
+		.pipe($.if(PRODUCTION, $.imagemin({
+			progressive: true
+		})))
+		.pipe(gulp.dest(PATHS.dist + '/uploads'));
+}
+
 // Copy fonts to the "html" folder
 function fonts() {
 	return gulp
@@ -147,6 +157,7 @@ exports.server = server;
 exports.watch = watch;
 exports.reset = reset;
 exports.pages = pages;
+exports.uploads = uploads;
 exports.images = images;
 exports.fonts = fonts;
 exports.linting = linting;
@@ -156,7 +167,7 @@ exports.reload = reload;
 exports.refresh = refresh;
 
 // Build the "static" and "html/assets" folders by running all of the below tasks
-gulp.task('build', gulp.series(reset, gulp.parallel(pages, images, fonts, linting, scripts, styles)));
+gulp.task('build', gulp.series(reset, gulp.parallel(pages, images, uploads, fonts, linting, scripts, styles)));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default', gulp.series('build', server, watch));

@@ -22,6 +22,9 @@ return array(
 		'errorTemplatePrefix' => '_errors/',
 		'environmentVariables' => array(
 			'baseAssetsUrl' => '//'.strtolower($_SERVER['SERVER_NAME']).'/assets/',
+			'baseAssetsPath' => realpath(dirname(__FILE__)).'/../../html/assets/',
+			'baseUploadsUrl' => '//'.strtolower($_SERVER['SERVER_NAME']).'/uploads/',
+			'baseUploadsPath' => realpath(dirname(__FILE__)).'/../../html/uploads/',
 		),
 	),
     '.local' => array(
@@ -32,10 +35,7 @@ return array(
 	    'useCompressedJs' => false,
         // caching options
 		'enableTemplateCaching' => false,
-        'environmentVariables' => array(
-			'baseAssetsPath' => realpath(dirname(__FILE__)).'/../../html/assets/'
-		),
-		// user options
+       // user options
 		'testToEmailAddress' => 'hello@delaneymethod.com',
 	),
     '.com' => array(
@@ -43,10 +43,7 @@ return array(
 	    'siteUrl' => 'http://www.delaneymethod.com',
 	    'useCompressedJs' => true,
         'cooldownDuration' => 0,
-        'environmentVariables' => array(
-	    	'baseAssetsPath' => realpath(dirname(__FILE__)).'/../../html/assets/'
-		),
-		// updates
+        // updates
 		'allowAutoUpdates' => false,
 		'backupDbOnUpdate' => false,
     	'restoreDbOnUpdateFailure' => false,

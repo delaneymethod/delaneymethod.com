@@ -1,0 +1,17 @@
+		{% set recommendations = craft.entries.section('recommendation').id(ids | join(', ')).fixedOrder(true).find() %}
+		{% if recommendations | length %}
+		<section class="section" id="recommendations">
+			<div class="container">
+				<div class="row">
+					{% for recommendation in recommendations %}
+					<div class="col s12 m12 l6">
+						<blockquote>
+							{{ recommendation.blockquote }}
+							<cite>{{ recommendation.title }}</cite>
+						</blockquote>
+					</div><!-- END .col //-->
+					{% endfor %}
+				</div><!-- END .row //-->
+			</div>
+		</section>
+		{% endif %}

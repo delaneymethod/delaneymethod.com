@@ -1,0 +1,55 @@
+	<footer>
+		<div class="section grey lighten-3">
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m12 l6">
+						{% if entry.aboutBodyText is defined and entry.aboutBodyText | length %}
+						<h4 class="uppercase">About {{ siteName }}</h4>
+						{{entry.aboutBodyText }}
+						{% endif %}
+					</div><!-- END .col //-->
+					<div class="col s12 m12 offset-l2 l4">
+						<h4 class="uppercase">{{ siteName }} HQ</h4>
+						<ul>
+							{% if general.locationUrl is defined and general.locationUrl | length %}
+							<li><a class="valign-wrapper" href="{{ general.locationUrl }}" title="Aberdeen, Scotland" target="_blank"><i class="valign tiny material-icons" aria-hidden="true">location_on</i>&nbsp;{{ general.location }}</a></li>
+							{% endif %}
+							{% if general.telephoneNumber is defined and general.telephoneNumber | length %}
+							<li><a class="valign-wrapper" href="tel:{{ general.telephoneNumber }}" title="Call us"><i class="valign tiny material-icons" aria-hidden="true">phone</i>&nbsp;{{ general.telephoneNumber }}</a></li>
+							{% endif %}
+							{% if general.emailAddress is defined and general.emailAddress | length %}
+							<li><a class="valign-wrapper" href="mailto:{{ general.emailAddress }}" title="Email us"><i class="valign tiny material-icons" aria-hidden="true">email</i>&nbsp;{{ general.emailAddress }}</a></li>
+							{% endif %}
+						</ul>
+						<ul class="icons">
+							{% if general.skypeUsername is defined and general.skypeUsername | length %}
+							<li><a href="skype:{{ general.skypeUsername }}" title="Skype us"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+							{% endif %}
+							{% if general.twitterUsername is defined and general.twitterUsername | length %}
+							<li><a href="//twitter.com/{{ general.twitterUsername }}" title="Tweet us" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+							{% endif %}
+							{% if general.linkedInUsername is defined and general.linkedInUsername | length %}
+							<li><a href="//uk.linkedin.com/in/{{ general.linkedInUsername }}" title="Connect with us" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+							{% endif %}
+							{% if general.githubUsername is defined and general.githubUsername | length %}
+							<li><a href="//github.com/{{ general.githubUsername }}" title="Fork us" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+							{% endif %}
+							<li><a href="whatsapp://send/?text={{ siteUrl }}" title="WhatsApp"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+						</ul>
+					</div><!-- END .col //-->
+				</div><!-- END .row //-->
+			</div>
+		</div><!-- END .row //-->
+		<div class="white">
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m12 l8 rights">
+						<p>&copy; {{ now.year }} {{ siteName }}, All rights reserved.{% if general.companyNumber is defined and general.companyNumber | length %} Company&nbsp;#&nbsp;{{ general.companyNumber }}{% endif %}{% if general.vatNumber is defined and general.vatNumber | length %}&nbsp;&bullet;&nbsp;VAT&nbsp;#&nbsp;{{ general.vatNumber }}{% endif %}</p>
+					</div><!-- END .col //-->
+					<div class="col s12 m12 l4 terms">
+						<p><a class="modal-trigger" href="#terms" title="Terms of Business">Terms of Business</a></p>
+					</div><!-- END .col //-->
+				</div><!-- END .row //-->
+			</div>
+		</div><!-- END .row //-->
+	</footer>

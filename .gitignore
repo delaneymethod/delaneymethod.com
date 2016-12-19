@@ -5,6 +5,7 @@ bower_components
 dist
 html/index.html
 html/assets/
+html/uploads/
 craft/app/
 craft/plugins/
 craft/storage/backups/
