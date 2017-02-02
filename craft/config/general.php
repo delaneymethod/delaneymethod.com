@@ -18,7 +18,7 @@ return array(
 		'defaultCpLanguage' => 'en_ie',
 		// user options
 		'useEmailAsUsername' => true,
-	    // template options
+		// template options
 		'errorTemplatePrefix' => '_errors/',
 		'environmentVariables' => array(
 			'baseAssetsUrl' => '//'.strtolower($_SERVER['SERVER_NAME']).'/assets/',
@@ -27,32 +27,32 @@ return array(
 			'baseUploadsPath' => realpath(dirname(__FILE__)).'/../../html/uploads/',
 		),
 	),
-    '.local' => array(
-	    'appId' => 'development',
-	    'siteUrl' => 'http://www.delaneymethod.local',
-	    'devMode' => true,
-	    'translationDebugOutput' => false,
-	    'useCompressedJs' => false,
-        // caching options
+	'.local' => array(
+		'appId' => 'development',
+		'siteUrl' => 'http://www.delaneymethod.local',
+		'devMode' => true,
+		'translationDebugOutput' => false,
+		'useCompressedJs' => false,
+		// caching options
 		'enableTemplateCaching' => false,
-       // user options
+		// user options
 		'testToEmailAddress' => 'hello@delaneymethod.com',
 	),
-    '.com' => array(
-	    'appId' => 'production',
-	    'siteUrl' => 'http://www.delaneymethod.com',
-	    'useCompressedJs' => true,
-        'cooldownDuration' => 0,
-        // updates
+	'.com' => array(
+		'appId' => 'production',
+		'siteUrl' => 'http://www.delaneymethod.com',
+		'useCompressedJs' => true,
+		'cooldownDuration' => 0,
+		// updates
 		'allowAutoUpdates' => false,
 		'backupDbOnUpdate' => false,
-    	'restoreDbOnUpdateFailure' => false,
-    	// security options
+		'restoreDbOnUpdateFailure' => false,
+		// security options
 		'enableCsrfProtection' => true,
 		'validationKey' => 'BCCDEE2B724DD98F1E61FE08936A570FFF30C146BC20FB2B044DB37DBA12E664',
 		// caching
-		// 'cacheMethod' => 'file',
+		'cacheMethod' => 'file',
 		// assets
 		'imageDriver' => 'imagick',
-    ),
+	),
 );
