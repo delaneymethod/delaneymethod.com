@@ -10,7 +10,7 @@
 							<h2>{{ entry.heroHeading }}</h2>
 							{% endif %}
 							{% if entry.heroCallToActionLabel is defined and entry.heroCallToActionLabel | length %}
-							<a class="btn btn-large teal" href="javascript:void(0);" title="Find Out More" data-scroll-to="about-us" onclick="_gaq.push(['_trackEvent', 'button', 'clicked', 'Find out more - {{ "user_" ~ now | date("dmY_His") }}', , true])"><i class="material-icons">arrow_downward</i>&nbsp;{{ entry.heroCallToActionLabel }}</a>
+							<a class="btn btn-large teal" href="javascript:void(0);" title="Find Out More" data-scroll-to="about-us" onclick="ga('send', 'event', 'button', 'Clicked', 'Find out more - {{ "user_" ~ now | date("dmY_His") }}', 100, {'nonInteraction': true});"><i class="material-icons">arrow_downward</i>&nbsp;{{ entry.heroCallToActionLabel }}</a>
 							{% endif %}
 						</div>
 					</div><!-- END .col //-->
@@ -65,7 +65,7 @@
 							<div class="col s12 m12 l4">
 								{% set communityImage = community.image.first() %}
 								{% if communityImage is defined and communityImage | length %}
-								<p><a href="{{ community.profileUrl }}" title="{{ community.description }}" target="_blank" onclick="_gaq.push(['_trackEvent', 'link', 'clicked', '{{ community.title }} - {{ "user_" ~ now | date("dmY_His") }}', , true])"><img class="z-depth-5" src="{{ communityImage.url }}" alt="{{ community.title }}"></a></p>
+								<p><a href="{{ community.profileUrl }}" title="{{ community.description }}" target="_blank" onclick="ga('send', 'event', 'link', 'Clicked', '{{ community.title }} - {{ "user_" ~ now | date("dmY_His") }}', 101, {'nonInteraction': true});"><img class="z-depth-5" src="{{ communityImage.url }}" alt="{{ community.title }}"></a></p>
 								{% endif %}
 							</div><!-- END .col //-->
 							{% endfor %}
@@ -159,7 +159,7 @@
 							{% endif %}
 							{% if general.emailAddress is defined and general.emailAddress | length %}
 							<div class="col s12 m6 l6">
-								<h4><a href="mailto:{{ general.emailAddress }}" title="Email us" oncopy="_gaq.push(['_trackEvent', 'text', 'copied', '{{ general.emailAddress }} - {{ "user_" ~ now | date("dmY_His") }}'])">{{ general.emailAddress }}</a></h4>
+								<h4><a href="mailto:{{ general.emailAddress }}" title="Email us" oncopy="ga('send', 'event', 'text', 'Copied', '{{ general.emailAddress }} - {{ "user_" ~ now | date("dmY_His") }}', 102, {'nonInteraction': true});">{{ general.emailAddress }}</a></h4>
 							</div><!-- END .col //-->
 							{% endif %}
 						</div><!-- END .row //-->

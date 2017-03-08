@@ -7,5 +7,6 @@
 	
 	ga('create', 'UA-93160833-1', 'auto');
 	ga('send', 'pageview', '{{ "user_" ~ now | date("dmY_His") }}');
+	ga('set', 'userId', '{{ "user_" ~ now | date("dmY_His") }}');
 	</script>
 	

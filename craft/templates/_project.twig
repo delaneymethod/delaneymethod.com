@@ -19,7 +19,7 @@
 								</ul>
 								{% endif %}
 								{% if entry.website is defined and entry.website | length %}
-								<p><a class="btn teal" href="{{ entry.website }}" title="{{ entry.title }}" target="_blank" onclick="_gaq.push(['_trackEvent', 'link', 'clicked', 'Visit {{ entry.title }} - {{ "user_" ~ now | date("dmY_His") }}', , true])">Visit {{ entry.title }}&nbsp;<i class="material-icons">arrow_forward</i></a></p>
+								<p><a class="btn teal" href="{{ entry.website }}" title="{{ entry.title }}" target="_blank" onclick="ga('send', 'event', 'link', 'Clicked', 'Visit {{ entry.title }} - {{ "user_" ~ now | date("dmY_His") }}', 103, {'nonInteraction': true});">Visit {{ entry.title }}&nbsp;<i class="material-icons">arrow_forward</i></a></p>
 								{% endif %}
 							</div><!-- END .col //-->
 						</div><!-- END .row //-->

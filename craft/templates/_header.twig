@@ -3,12 +3,12 @@
 			<div class="row">
 				<div class="col s12 m12 l12">
 					<div class="nav-wrapper">
-						<a class="button-collapse" href="javascript:void(0);" title="Open Sidebar Menu" data-activates="nav-mobile" onclick="_gaq.push(['_trackEvent', 'icon', 'clicked', 'Open Sidebar Menu - {{ "user_" ~ now | date("dmY_His") }}', , true])"><i class="material-icons">menu</i></a>
+						<a class="button-collapse" href="javascript:void(0);" title="Open Sidebar Menu" data-activates="nav-mobile" onclick="ga('send', 'event', 'icon', 'Clicked', 'Open Sidebar Menu - {{ "user_" ~ now | date("dmY_His") }}', 110, {'nonInteraction': true});"><i class="material-icons">menu</i></a>
 						<a class="brand-logo uppercase delaneymethod-name" href="javascript:void(0);" title="{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}" data-scroll-to="intro">{{ siteName }}</a>
 						<ul class="right hide-on-med-and-down uppercase">
-							<li><a href="javascript:void(0);" title="What We Do" data-scroll-to="about-us" onclick="_gaq.push(['_trackEvent', 'link', 'clicked', 'About Us - {{ "user_" ~ now | date("dmY_His") }}', , true])">About Us</a></li>
-							<li><a href="javascript:void(0);" title="Featured Projects" data-scroll-to="featured-projects" onclick="_gaq.push(['_trackEvent', 'link', 'clicked', 'Portfolio - {{ "user_" ~ now | date("dmY_His") }}', , true])">Portfolio</a></li>
-							<li><a href="javascript:void(0);" title="Request a Callback" data-scroll-to="request-call-back" onclick="_gaq.push(['_trackEvent', 'link', 'clicked', 'Contact - {{ "user_" ~ now | date("dmY_His") }}', , true])">Contact</a></li>
+							<li><a href="javascript:void(0);" title="What We Do" data-scroll-to="about-us" onclick="ga('send', 'event', 'link', 'Clicked', 'About Us - {{ "user_" ~ now | date("dmY_His") }}', 111, {'nonInteraction': true});">About Us</a></li>
+							<li><a href="javascript:void(0);" title="Featured Projects" data-scroll-to="featured-projects" onclick="ga('send', 'event', 'link', 'Clicked', 'Portfolio - {{ "user_" ~ now | date("dmY_His") }}', 112, {'nonInteraction': true});">Portfolio</a></li>
+							<li><a href="javascript:void(0);" title="Request a Callback" data-scroll-to="request-call-back" onclick="ga('send', 'event', 'link', 'Clicked', 'Contact - {{ "user_" ~ now | date("dmY_His") }}', 113, {'nonInteraction': true});">Contact</a></li>
 						</ul>
 					</div>
 				</div>

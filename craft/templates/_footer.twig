@@ -18,23 +18,23 @@
 							<li><a class="valign-wrapper" href="tel:{{ general.telephoneNumber }}" title="Call us"><i class="valign tiny material-icons" aria-hidden="true">phone</i>&nbsp;{{ general.telephoneNumber }}</a></li>
 							{% endif %}
 							{% if general.emailAddress is defined and general.emailAddress | length %}
-							<li><a class="valign-wrapper" href="mailto:{{ general.emailAddress }}" title="Email us" oncopy="_gaq.push(['_trackEvent', 'text', 'copied', '{{ general.emailAddress }} - {{ "user_" ~ now | date("dmY_His") }}'])"><i class="valign tiny material-icons" aria-hidden="true">email</i>&nbsp;{{ general.emailAddress }}</a></li>
+							<li><a class="valign-wrapper" href="mailto:{{ general.emailAddress }}" title="Email us" oncopy="ga('send', 'event', 'text', 'Copied', '{{ general.emailAddress }} - {{ "user_" ~ now | date("dmY_His") }}', 102, {'nonInteraction': true});"><i class="valign tiny material-icons" aria-hidden="true">email</i>&nbsp;{{ general.emailAddress }}</a></li>
 							{% endif %}
 						</ul>
 						<ul class="icons">
 							{% if general.skypeUsername is defined and general.skypeUsername | length %}
-							<li><a href="skype:{{ general.skypeUsername }}" title="Skype us" onclick="_gaq.push(['_trackEvent', 'link', 'clicked', 'Skype - {{ "user_" ~ now | date("dmY_His") }}', , true])"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+							<li><a href="skype:{{ general.skypeUsername }}" title="Skype us" onclick="ga('send', 'event', 'link', 'Clicked', 'Skype - {{ "user_" ~ now | date("dmY_His") }}', 104, {'nonInteraction': true});"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
 							{% endif %}
 							{% if general.twitterUsername is defined and general.twitterUsername | length %}
-							<li><a href="//twitter.com/{{ general.twitterUsername }}" title="Tweet us" target="_blank" onclick="_gaq.push(['_trackEvent', 'link', 'clicked', 'Twitter - {{ "user_" ~ now | date("dmY_His") }}', , true])"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+							<li><a href="//twitter.com/{{ general.twitterUsername }}" title="Tweet us" target="_blank" onclick="ga('send', 'event', 'link', 'Clicked', 'Twitter - {{ "user_" ~ now | date("dmY_His") }}', 105, {'nonInteraction': true});"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 							{% endif %}
 							{% if general.linkedInUsername is defined and general.linkedInUsername | length %}
-							<li><a href="//uk.linkedin.com/in/{{ general.linkedInUsername }}" title="Connect with us" target="_blank" onclick="_gaq.push(['_trackEvent', 'link', 'clicked', 'LinkedIn - {{ "user_" ~ now | date("dmY_His") }}', , true])"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+							<li><a href="//uk.linkedin.com/in/{{ general.linkedInUsername }}" title="Connect with us" target="_blank" onclick="ga('send', 'event', 'link', 'Clicked', 'LinkedIn - {{ "user_" ~ now | date("dmY_His") }}', 106, {'nonInteraction': true});"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
 							{% endif %}
 							{% if general.githubUsername is defined and general.githubUsername | length %}
-							<li><a href="//github.com/{{ general.githubUsername }}" title="Fork us" target="_blank" onclick="_gaq.push(['_trackEvent', 'link', 'clicked', 'Github - {{ "user_" ~ now | date("dmY_His") }}', , true])"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+							<li><a href="//github.com/{{ general.githubUsername }}" title="Fork us" target="_blank" onclick="ga('send', 'event', 'link', 'Clicked', 'Github - {{ "user_" ~ now | date("dmY_His") }}', 107, {'nonInteraction': true});"><i class="fa fa-github" aria-hidden="true"></i></a></li>
 							{% endif %}
-							<li><a href="whatsapp://send/?text={{ siteUrl }}" title="WhatsApp" onclick="_gaq.push(['_trackEvent', 'link', 'clicked', 'WhatsApp - {{ "user_" ~ now | date("dmY_His") }}', , true])"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+							<li><a href="whatsapp://send/?text={{ siteUrl }}" title="WhatsApp" onclick="ga('send', 'event', 'link', 'Clicked', 'WhatsApp - {{ "user_" ~ now | date("dmY_His") }}', 108, {'nonInteraction': true});"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
 						</ul>
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
@@ -47,7 +47,7 @@
 						<p>&copy; {{ now.year }} {{ siteName }}, All rights reserved.{% if general.companyNumber is defined and general.companyNumber | length %} Company&nbsp;#&nbsp;{{ general.companyNumber }}{% endif %}{% if general.vatNumber is defined and general.vatNumber | length %}&nbsp;&bullet;&nbsp;VAT&nbsp;#&nbsp;{{ general.vatNumber }}{% endif %}</p>
 					</div><!-- END .col //-->
 					<div class="col s12 m12 l4 terms">
-						<p><a class="modal-trigger" href="#terms" title="Terms of Business" onclick="_gaq.push(['_trackEvent', 'link', 'clicked', 'Terms of Business - {{ "user_" ~ now | date("dmY_His") }}', , true])">Terms of Business</a></p>
+						<p><a class="modal-trigger" href="#terms" title="Terms of Business" onclick="ga('send', 'event', 'link', 'Clicked', 'Terms of Business - {{ "user_" ~ now | date("dmY_His") }}', 109, {'nonInteraction': true});">Terms of Business</a></p>
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
 			</div>
