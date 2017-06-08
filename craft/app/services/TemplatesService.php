@@ -255,7 +255,7 @@ class TemplatesService extends BaseApplicationComponent
 		{
 			$result = $twig->render($template, $variables);
 		}
-		catch (\Exception $e)
+		catch (\RuntimeException $e)
 		{
 			if (!craft()->config->get('devMode'))
 			{
@@ -293,7 +293,7 @@ class TemplatesService extends BaseApplicationComponent
 		{
 			$result = call_user_func_array(array($twigTemplate, 'get'.$macro), $args);
 		}
-		catch (\Exception $e)
+		catch (\RuntimeException $e)
 		{
 			if (!craft()->config->get('devMode'))
 			{
@@ -396,7 +396,7 @@ class TemplatesService extends BaseApplicationComponent
 				$twig->enableStrictVariables();
 			}
 		}
-		catch (\Exception $e)
+		catch (\RuntimeException $e)
 		{
 			if (!craft()->config->get('devMode'))
 			{
@@ -956,7 +956,7 @@ class TemplatesService extends BaseApplicationComponent
 		// Otherwise maybe it's a plugin template?
 
 		// Only attempt to match against a plugin's templates if this is a CP or action request.
-		if (craft()->request->isCpRequest() || craft()->request->isActionRequest())
+		if ($this->getTemplateMode() === TemplateMode::CP || craft()->request->isActionRequest())
 		{
 			// Sanitize
 			$name = craft()->request->decodePathInfo($name);

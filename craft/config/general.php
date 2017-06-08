@@ -52,6 +52,7 @@ return array(
 		'validationKey' => 'BCCDEE2B724DD98F1E61FE08936A570FFF30C146BC20FB2B044DB37DBA12E664',
 		// caching
 		'cacheMethod' => 'file',
+		'enableTemplateCaching' => true,
 		// assets
 		'imageDriver' => 'imagick',
 	),
