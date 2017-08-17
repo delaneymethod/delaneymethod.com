@@ -1,4 +1,4 @@
-/*! Craft  - 2017-06-26 */
+/*! Craft  - 2017-07-19 */
 (function($){
 
 // Set all the standard Craft.* stuff
@@ -3585,6 +3585,7 @@ Craft.BaseElementIndexView = Garnish.Base.extend(
 				this.appendElements($newElements);
 				Craft.appendHeadHtml(response.headHtml);
 				Craft.appendFootHtml(response.footHtml);
+				picturefill();
 
 				if (this.elementSelect)
 				{
@@ -10812,7 +10813,7 @@ Craft.EntryIndex = Craft.BaseElementIndex.extend(
 			{
 				var href = this._getSectionTriggerHref(selectedSection),
 					label = (this.settings.context == 'index' ? Craft.t('New entry') : Craft.t('New {section} entry', {section: selectedSection.name}));
-				this.$newEntryBtn = $('<a class="btn submit add icon" '+href+'>'+label+'</a>').appendTo(this.$newEntryBtnGroup);
+				this.$newEntryBtn = $('<a class="btn submit add icon" '+href+'>'+Craft.escapeHtml(label)+'</a>').appendTo(this.$newEntryBtnGroup);
 
 				if (this.settings.context != 'index')
 				{
@@ -16815,7 +16816,7 @@ Craft.UpgradeModal = Garnish.Modal.extend(
 
 	init: function(settings)
 	{
-		this.$container = $('<div id="upgrademodal" class="modal loading"/>').appendTo(Garnish.$bod),
+		this.$container = $('<div id="upgrademodal" class="modal loading"/>').appendTo(Garnish.$bod);
 
 		this.base(this.$container, $.extend({
 			resizable: true
