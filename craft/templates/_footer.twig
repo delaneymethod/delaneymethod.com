@@ -3,6 +3,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col s12 m12 l6">
+						{% set entry = craft.entries.id(2).first() %}
 						{% if entry.aboutBodyText is defined and entry.aboutBodyText | length %}
 						<h4 class="uppercase">About {{ siteName }}</h4>
 						{{ entry.aboutBodyText }}

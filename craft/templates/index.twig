@@ -26,7 +26,7 @@
 		<section class="section" id="about-us">
 			<div class="container">
 				<div class="row">
-					<div class="col s12 m12 offset-l2 l8 center-align">
+					<div class="col s12 m12 offset-l1 l10 center-align">
 						{% if entry.whatWeDoHeading is defined and entry.whatWeDoHeading | length %}
 						<h3 class="uppercase">{{ entry.whatWeDoHeading }}</h3>
 						{% endif %}
@@ -118,7 +118,7 @@
 		<section class="section" id="our-toolkit">
 			<div class="container">
 				<div class="row">
-					<div class="col s12 m12 offset-l2 l8 center-align">
+					<div class="col s12 m12 offset-l1 l10 center-align">
 						{% if entry.ourToolkitHeading is defined and entry.ourToolkitHeading | length %}
 						<h3 class="uppercase">{{ entry.ourToolkitHeading }}</h3>
 						{% endif %}
@@ -174,7 +174,7 @@
 			{% endif %}
 		</section>
 		{% endif %}
-		{% set featuredProjects = craft.entries.section('project').featured('1').order('id').find() %}
+		{% set featuredProjects = craft.entries.section('project').featured('1').order('position').find() %}
 		{% if featuredProjects | length %}
 		<section class="section" id="featured-projects">
 			<div class="container">
@@ -202,7 +202,7 @@
 			<div>
 		</section>
 		{% endif %}
-		{% set projects = craft.entries.section('project').featured('not 1').order('id').find() %}
+		{% set projects = craft.entries.section('project').featured('not 1').order('position').find() %}
 		{% if projects | length %}
 		<section class="section" id="featured-projects">
 			<div class="container">
@@ -238,7 +238,6 @@
 			</div>
 		</section>
 		{% endif %}
-		{% if entry.requestACallbackForm is defined and entry.requestACallbackForm  | length %}
 		<section class="section" id="request-call-back">
 			<div class="container">
 				<div class="row">
@@ -247,14 +246,14 @@
 						<h3 class="uppercase">{{ entry.requestACallbackHeading }}</h3>
 						{% endif %}
 						{{ entry.requestACallbackBodyText }}
-						{% if entry.requestACallbackForm.hasErrors %}
-							<div class="row">
-								<div class="col s12 m12 l12">
-									<h4 class="red-text text-darken-2 uppercase center-align">Please Try Again</h4>
-									<p class="lead red-text">{{ 'There was an error submitting your callback request.' }}</p>
-								</div><!-- END .col //-->
-							</div><!-- END .row //-->
-						{% endif %}
+						{% macro errorList(errors) %}
+							{% if errors %}
+								{% for error in errors %}
+								<div style="margin-top: -10px;" class="red-text">{{ error }}</div>
+								{% endfor %}
+							{% endif %}
+						{% endmacro %}
+						{% from _self import errorList %}
 						{% if craft.request.getQuery('thanks') is defined and craft.request.getQuery('thanks') | length %}
 							<div class="row thanks">
 								<div class="col s12 m12 l12">
@@ -267,39 +266,40 @@
 				</div><!-- END .row //-->
 				<div class="row">
 					<div class="col s12 offset-m1 m10 offset-l2 l8">
-						{{ entry.requestACallbackForm.renderTag() }}
+						<form method="POST" action="" accept-charset="UTF-8">
+							{{ getCsrfInput() }}
+							<input type="hidden" name="action" value="contactForm/sendMessage">
+    						<input type="hidden" name="redirect" value="/?thanks=1">
 							<div class="row">
-								{% for row in entry.requestACallbackForm %}
-									{% for field in row %}
-										{% set required = field.required ? ' required class="required"' : '' %}
-										{% if field.type == 'submit' %}
-											{% set classNames = ' m12 l12 center-align' %}
-										{% elseif field.handle == 'message' %}
-											{% set classNames = ' m12 l12' %}
-										{% else %}
-											{% set classNames = ' m6 l6' %}
-										{% endif %}
-										<div class="col s12 {{ classNames }} input-field">
-											{% if field.type == 'submit' %}
-												<button class="btn btn-large teal" id="{{ field.type }}" name="{{ field.type }}" type="{{ field.type }}"><i class="material-icons">message</i>&nbsp;Send Message</button>
-											{% else %}
-												{% if (field.type == 'text') or (field.type == 'email') or (field.type == 'tel') %}
-													<input class="validate truncate" id="{{ field.handle }}" name="{{ field.handle }}" type="{{ field.type }}" value="{{ field.valueAsString }}" placeholder="{{ field.placeholder }}"{{ required }}>
-												{% elseif field.type == 'textarea' %}
-													<textarea class="materialize-textarea flow-text" id="{{ field.handle }}" name="{{ field.handle }}" placeholder="{{ field.placeholder }}"{{ required }}>{{ field.value }}</textarea>
-												{% endif %}
-												<label for="{{ field.handle }}" class="active" data-error="wrong"><span class="truncate">{{ field.label }}:</span></label>
-											{% endif %}
-										</div><!-- END .col //-->
-									{% endfor %}
-								{% endfor %}
+								<div class="col s12  m6 l6 input-field">
+									<input class="validate truncate" id="firstName" name="message[firstName]" type="text" value="{% if message is defined %}{{ message[firstName] }}{% endif %}" placeholder="e.g. Sean" required>
+									<label for="firstName" class="active" data-error="wrong"><span class="truncate">First Name:</span></label>
+								</div><!-- END .col //-->
+								<div class="col s12  m6 l6 input-field">
+									<input class="validate truncate" id="lastName" name="message[lastName]" type="text" value="{% if message is defined %}{{ message[lastName] }}{% endif %}" placeholder="e.g. Delaney" required>
+									<label for="lastName" class="active" data-error="wrong"><span class="truncate">Last Name:</span></label>
+								</div><!-- END .col //-->
+								<div class="col s12  m6 l6 input-field">
+									<input class="validate truncate" id="fromEmail" name="fromEmail" type="email" value="{% if message is defined %}{{ message.fromEmail }}{% endif %}" placeholder="e.g. hello@delaneymethod.com" required>
+									<label for="fromEmail" class="active" data-error="wrong"><span class="truncate">Email Address:</span></label>
+								</div><!-- END .col //-->
+								<div class="col s12  m6 l6 input-field">
+									<input class="validate truncate" id="telephoneNumber" name="message[telephoneNumber]" type="text" value="{% if message is defined %}{{ message[telephoneNumber] }}{% endif %}" placeholder=".e.g. +44 7889571206" required>
+									<label for="telephoneNumber" class="active" data-error="wrong"><span class="truncate">Telephone Number:</span></label>
+								</div><!-- END .col //-->
+								<div class="col s12  m12 l12 input-field">
+									<textarea class="materialize-textarea flow-text" id="message" name="message[body]" placeholder="e.g. Hello, my name is..." required>{% if message is defined %}{{ message.message }}{% endif %}</textarea>
+									<label for="message" class="active" data-error="wrong"><span class="truncate">Message:</span></label>
+								</div><!-- END .col //-->
+								<div class="col s12  m12 l12 center-align input-field">
+									<button class="btn btn-large teal" id="submit" name="submit" type="submit"><i class="material-icons">message</i>&nbsp;Send Message</button>
+								</div><!-- END .col //-->
 							</div><!-- END .row //-->
-						{{ entry.requestACallbackForm.renderClosingTag }}
+						</form>
 					</div><!-- END .col //-->
 				</div><!-- END .row //-->
 			</div>
 		</section>
-		{% endif %}
 		{% if entry.reliableHeading is defined and entry.reliableHeading | length %}
 		<section class="section" id="reliable">
 			<div class="container">

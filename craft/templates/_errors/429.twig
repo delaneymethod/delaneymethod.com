@@ -1,9 +1,25 @@
 {% extends '_layout' %}
 {% set title = 'Server Error: 429 (Too Many Attempts)' %}
 {% block content %}
-	
-	<h1>Server Error: 429 (Too Many Attempts)</h1>
-	<h2>What does this mean?</h2>
-	<p>You have made too many requests to the same resource, and now you will have to wait for a 60 seconds before trying again.</p>
-
+<section class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m12 l12 center-align">
+						<h1><a href="/" title="{{ siteName }}"><img src="/assets/img/delaneymethod.png" alt="{{ siteName }} logo" width="140px"></a></h1>
+						<h3>Server Error: 429 (Too Many Attempts)</h3>
+						<h4>What does this mean?</h4>
+						<p>You have made too many requests to the same resource, and now you will have to wait for a 60 seconds before trying again.</p>
+					</div><!-- END .col //-->
+				</div><!-- END .row //-->
+			</div>
+		</section>
+		<section class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m12 l12 center-align">
+						<p>&copy; {{ now.year }} {{ siteName }}, All rights reserved.{% if general.companyNumber is defined and general.companyNumber | length %} Company&nbsp;#&nbsp;{{ general.companyNumber }}{% endif %}{% if general.vatNumber is defined and general.vatNumber | length %}&nbsp;&bullet;&nbsp;VAT&nbsp;#&nbsp;{{ general.vatNumber }}{% endif %}</p>
+					</div><!-- END .col //-->
+				</div><!-- END .row //-->
+			</div>
+		</section>
 {% endblock %}

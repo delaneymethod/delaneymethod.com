@@ -1,4 +1,7 @@
-	{% include '_footer' %}
+	{% set entry = craft.entries.slug(craft.request.getFirstSegment()).find() %}
+	{% if entry %}
+		{% include '_footer' %}
+	{% endif %}
 	{% include '_scripts' %}
 </body>
 </html>

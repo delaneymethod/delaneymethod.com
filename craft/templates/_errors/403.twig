@@ -1,10 +1,26 @@
 {% extends '_layout' %}
 {% set title = 'Server Error: 403 (Forbidden)' %}
 {% block content %}
-
-	<h1>Server Error: 403 (Forbidden)</h1>
-	<h2>What does this mean?</h2>
-	<p>You don&#39;t have the right credentials to view the requested resource.</p>
-	<p>Perhaps you would like to go <a href="javascript:window.history.back();" title="Back">back</a> or go to our <a href="/" title="Home">homepage</a> ?</p>
-	
+<section class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m12 l12 center-align">
+						<h1><a href="/" title="{{ siteName }}"><img src="/assets/img/delaneymethod.png" alt="{{ siteName }} logo" width="140px"></a></h1>
+						<h3>Server Error: 403 (Forbidden)</h1>
+						<h4>What does this mean?</h4>
+						<p>You don&#39;t have the right credentials to view the requested resource.</p>
+						<p>Perhaps you would like to go <a href="javascript:window.history.back();" title="Back">back</a> or go to our <a href="/" title="Home">homepage</a> ?</p>
+					</div><!-- END .col //-->
+				</div><!-- END .row //-->
+			</div>
+		</section>
+		<section class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m12 l12 center-align">
+						<p>&copy; {{ now.year }} {{ siteName }}, All rights reserved.{% if general.companyNumber is defined and general.companyNumber | length %} Company&nbsp;#&nbsp;{{ general.companyNumber }}{% endif %}{% if general.vatNumber is defined and general.vatNumber | length %}&nbsp;&bullet;&nbsp;VAT&nbsp;#&nbsp;{{ general.vatNumber }}{% endif %}</p>
+					</div><!-- END .col //-->
+				</div><!-- END .row //-->
+			</div>
+		</section>
 {% endblock %}

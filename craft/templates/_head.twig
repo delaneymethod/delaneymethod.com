@@ -49,4 +49,8 @@
 	</script>
 </head>
 <body>
-	{% include '_header' %}
+	{% set entry = craft.entries.slug(craft.request.getFirstSegment()).find() %}
+	{% if entry %}
+		{% include '_header' %}
+	{% endif %}
+	
