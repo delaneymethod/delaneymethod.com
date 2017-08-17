@@ -2,7 +2,7 @@
 
 var $ = window.jQuery.noConflict();
 
-var DelaneyMethod = {
+let DelaneyMethod = {
 	Page: {
 		init: function () {
 			$('.modal').modal({

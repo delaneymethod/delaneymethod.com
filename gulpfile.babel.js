@@ -169,5 +169,11 @@ exports.refresh = refresh;
 // Build the "static" and "html/assets" folders by running all of the below tasks
 gulp.task('build', gulp.series(reset, gulp.parallel(pages, images, uploads, fonts, linting, scripts, styles)));
 
+// Build the site styles only
+gulp.task('styles', styles);
+
+// Build the site styles only
+gulp.task('scripts', scripts);
+
 // Build the site, run the server, and watch for file changes
 gulp.task('default', gulp.series('build', server, watch));
