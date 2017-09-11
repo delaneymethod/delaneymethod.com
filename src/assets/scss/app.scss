@@ -447,12 +447,27 @@ main {
 
 	#trusted {
 		background-color: color('teal', 'base');
-
+		background: rgba(4,128,116,1);
+		background: -moz-linear-gradient(top, rgba(4,128,116,1) 0%, rgba(0,150,136,1) 100%);
+		background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(4,128,116,1)), color-stop(100%, rgba(0,150,136,1)));
+		background: -webkit-linear-gradient(top, rgba(4,128,116,1) 0%, rgba(0,150,136,1) 100%);
+		background: -o-linear-gradient(top, rgba(4,128,116,1) 0%, rgba(0,150,136,1) 100%);
+		background: -ms-linear-gradient(top, rgba(4,128,116,1) 0%, rgba(0,150,136,1) 100%);
+		background: linear-gradient(to bottom, rgba(4,128,116,1) 0%, rgba(0,150,136,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#048074', endColorstr='#009688', GradientType=0 );
 	}
 
 	#recommendations {
 		background-color: $pink-darken-3;
-
+		background: rgba(214,21,111,1);
+		background: -moz-linear-gradient(top, rgba(214,21,111,1) 0%, rgba(173,20,87,1) 100%);
+		background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(214,21,111,1)), color-stop(100%, rgba(173,20,87,1)));
+		background: -webkit-linear-gradient(top, rgba(214,21,111,1) 0%, rgba(173,20,87,1) 100%);
+		background: -o-linear-gradient(top, rgba(214,21,111,1) 0%, rgba(173,20,87,1) 100%);
+		background: -ms-linear-gradient(top, rgba(214,21,111,1) 0%, rgba(173,20,87,1) 100%);
+		background: linear-gradient(to bottom, rgba(214,21,111,1) 0%, rgba(173,20,87,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6156f', endColorstr='#ad1457', GradientType=0 );
+		
 		.row {
 			.col {
 				blockquote {
@@ -552,6 +567,14 @@ main {
 
 	#reliable {
 		background-color: $grey-darken-2;
+		background: rgba(69,67,69,1);
+		background: -moz-linear-gradient(top, rgba(69,67,69,1) 0%, rgba(97,97,97,1) 100%);
+		background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(69,67,69,1)), color-stop(100%, rgba(97,97,97,1)));
+		background: -webkit-linear-gradient(top, rgba(69,67,69,1) 0%, rgba(97,97,97,1) 100%);
+		background: -o-linear-gradient(top, rgba(69,67,69,1) 0%, rgba(97,97,97,1) 100%);
+		background: -ms-linear-gradient(top, rgba(69,67,69,1) 0%, rgba(97,97,97,1) 100%);
+		background: linear-gradient(to bottom, rgba(69,67,69,1) 0%, rgba(97,97,97,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#454345', endColorstr='#616161', GradientType=0 );
 	}
 }
 
