@@ -440,6 +440,16 @@ main {
 					@media #{$medium-and-up} {
 						text-align: left;
 					}
+					
+					.kl, 
+					.nss {
+						color: #009688 !important;
+						text-decoration: underline !important;
+				
+						&:hover {
+							color: #AD1457 !important;
+						}
+					}
 				}
 			}
 		}
