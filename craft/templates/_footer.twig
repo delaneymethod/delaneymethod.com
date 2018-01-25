@@ -35,6 +35,9 @@
 							{% if general.githubUsername is defined and general.githubUsername | length %}
 							<li><a href="//github.com/{{ general.githubUsername }}" title="Fork us" target="_blank" onclick="ga('send', 'event', 'link', 'Clicked', 'Github - {{ "user_" ~ now | date("dmY_His") }}', 107, {'nonInteraction': true});"><i class="fa fa-github" aria-hidden="true"></i></a></li>
 							{% endif %}
+							{% if general.gitlabUsername is defined and general.gitlabUsername | length %}
+							<li><a href="//gitlab.com/{{ general.gitlabUsername }}" title="Fork us" target="_blank" onclick="ga('send', 'event', 'link', 'Clicked', 'Gitlab - {{ "user_" ~ now | date("dmY_His") }}', 110, {'nonInteraction': true});"><i class="fa fa-gitlab" aria-hidden="true"></i></a></li>
+							{% endif %}
 							<li><a href="whatsapp://send/?text={{ siteUrl }}" title="WhatsApp" onclick="ga('send', 'event', 'link', 'Clicked', 'WhatsApp - {{ "user_" ~ now | date("dmY_His") }}', 108, {'nonInteraction': true});"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
 						</ul>
 					</div><!-- END .col //-->
