@@ -266,33 +266,36 @@
 				</div><!-- END .row //-->
 				<div class="row">
 					<div class="col s12 offset-m1 m10 offset-l2 l8">
-						<form method="POST" action="" accept-charset="UTF-8">
+						<form method="POST" id="contact" action="" accept-charset="UTF-8">
 							{{ getCsrfInput() }}
-							<input type="hidden" name="action" value="contactForm/sendMessage">
+							<input type="hidden" name="action" value="recaptcha/service/sendMessage">
     						<input type="hidden" name="redirect" value="/?thanks=1">
 							<div class="row">
 								<div class="col s12  m6 l6 input-field">
-									<input class="validate truncate" id="firstName" name="message[firstName]" type="text" value="{% if message is defined %}{{ message[firstName] }}{% endif %}" placeholder="e.g. Sean" required>
-									<label for="firstName" class="active" data-error="wrong"><span class="truncate">First Name:</span></label>
+									<input class="validate truncate" id="firstName" name="message[First Name]" type="text" value="{% if message is defined %}{{ message.firstName }}{% endif %}" placeholder="e.g. Sean" required>
+									<label for="firstName" class="active" data-error="wrong"><span class="truncate">First Name: <span class="required">&#42;</span></span></label>
 								</div><!-- END .col //-->
 								<div class="col s12  m6 l6 input-field">
-									<input class="validate truncate" id="lastName" name="message[lastName]" type="text" value="{% if message is defined %}{{ message[lastName] }}{% endif %}" placeholder="e.g. Delaney" required>
-									<label for="lastName" class="active" data-error="wrong"><span class="truncate">Last Name:</span></label>
+									<input class="validate truncate" id="lastName" name="message[Last Name]" type="text" value="{% if message is defined %}{{ message.lastName }}{% endif %}" placeholder="e.g. Delaney" required>
+									<label for="lastName" class="active" data-error="wrong"><span class="truncate">Last Name: <span class="required">&#42;</span></span></label>
 								</div><!-- END .col //-->
 								<div class="col s12  m6 l6 input-field">
 									<input class="validate truncate" id="fromEmail" name="fromEmail" type="email" value="{% if message is defined %}{{ message.fromEmail }}{% endif %}" placeholder="e.g. hello@delaneymethod.com" required>
-									<label for="fromEmail" class="active" data-error="wrong"><span class="truncate">Email Address:</span></label>
+									<label for="fromEmail" class="active" data-error="wrong"><span class="truncate">Email Address: <span class="required">&#42;</span></span></label>
 								</div><!-- END .col //-->
 								<div class="col s12  m6 l6 input-field">
-									<input class="validate truncate" id="telephoneNumber" name="message[telephoneNumber]" type="text" value="{% if message is defined %}{{ message[telephoneNumber] }}{% endif %}" placeholder=".e.g. +44 7889571206" required>
-									<label for="telephoneNumber" class="active" data-error="wrong"><span class="truncate">Telephone Number:</span></label>
+									<input class="validate truncate" id="telephoneNumber" name="message[Telephone Number]" type="text" value="{% if message is defined %}{{ message.telephoneNumber }}{% endif %}" placeholder=".e.g. +44 7889571206" required>
+									<label for="telephoneNumber" class="active" data-error="wrong"><span class="truncate">Telephone Number: <span class="required">&#42;</span></span></label>
 								</div><!-- END .col //-->
 								<div class="col s12  m12 l12 input-field">
 									<textarea class="materialize-textarea flow-text" id="message" name="message[body]" placeholder="e.g. Details of your enquiry" required>{% if message is defined %}{{ message.message }}{% endif %}</textarea>
-									<label for="message" class="active" data-error="wrong"><span class="truncate">Message:</span></label>
+									<label for="message" class="active" data-error="wrong"><span class="truncate">Message: <span class="required">&#42;</span></span></label>
+								</div><!-- END .col //-->
+								<div class="col s12  m12 l12 center-align">
+									{{ craft.recaptcha.render() }}
 								</div><!-- END .col //-->
 								<div class="col s12  m12 l12 center-align input-field">
-									<button class="btn btn-large teal" id="submit" name="submit" type="submit"><i class="material-icons">message</i>&nbsp;Send Message</button>
+									<button type="submit" class="btn btn-large teal" id="submit" name="submit"><i class="material-icons">message</i>&nbsp;Send Message</button>
 								</div><!-- END .col //-->
 							</div><!-- END .row //-->
 						</form>

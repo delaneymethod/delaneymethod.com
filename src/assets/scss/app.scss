@@ -562,6 +562,17 @@ main {
 								border-bottom: 1px solid color('grey', 'base');
 								box-shadow: none;
 							}
+							
+							.required {
+								color: red !important;
+							}
+							
+							.g-recaptcha {
+								div:first-child {
+									margin: 0 auto !important;
+									text-align: center !important;
+								}
+							}
 
 							.btn {
 								i {
