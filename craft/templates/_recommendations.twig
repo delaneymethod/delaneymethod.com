@@ -4,7 +4,7 @@
 			<div class="container">
 				<div class="row">
 					{% for recommendation in recommendations %}
-					<div class="col s12 m12 l6">
+					<div class="col s12 m12 {% if (recommendations | length) == 1 %}l12{% else %}l6{% endif %}">
 						<blockquote>
 							{{ recommendation.blockquote }}
 							<cite>{{ recommendation.title }}</cite>
