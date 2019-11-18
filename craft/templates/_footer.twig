@@ -13,7 +13,7 @@
 						<h4 class="uppercase">{{ siteName }} HQ</h4>
 						<ul>
 							{% if general.locationUrl is defined and general.locationUrl | length %}
-							<li><a class="valign-wrapper" href="{{ general.locationUrl }}" title="Aberdeen, Scotland" target="_blank"><i class="valign tiny material-icons" aria-hidden="true">location_on</i>&nbsp;{{ general.location }}</a></li>
+							<li><a class="valign-wrapper" href="{{ general.locationUrl }}" title="{{ general.location }}" target="_blank"><i class="valign tiny material-icons" aria-hidden="true">location_on</i>&nbsp;{{ general.location }}</a></li>
 							{% endif %}
 							{% if general.telephoneNumber is defined and general.telephoneNumber | length %}
 							<li><a class="valign-wrapper" href="tel:{{ general.telephoneNumber }}" title="Call us"><i class="valign tiny material-icons" aria-hidden="true">phone</i>&nbsp;{{ general.telephoneNumber }}</a></li>
