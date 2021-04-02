@@ -8,3 +8,5 @@ craft/plugins/
 craft/storage/backups/
 craft/storage/runtime/
 craft/config/db.php
+.idea
+/delaneymethod.iml
