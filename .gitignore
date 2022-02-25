@@ -1,12 +1,5 @@
 .DS_Store
 node_modules
 npm-debug.log
-bower_components
-dist
-html/index.html
-craft/plugins/
-craft/storage/backups/
-craft/storage/runtime/
-craft/config/db.php
 .idea
 /delaneymethod.iml
