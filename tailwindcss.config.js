@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+      },
       fontFamily: {
         'arima-madurai': [
           'Arima Madurai',
@@ -25,7 +28,13 @@ module.exports = {
           'rgba(186, 12, 248, 1) 80%,' +
           'rgba(251, 7, 217, 1) 90%,' +
           'rgba(255, 0, 0, 1) 100%' +
-         ');'
+        ');',
+        'delaneymethod': 'linear-gradient(' +
+          '49deg,' +
+          'rgba(219,89,74,1) 0%,' +
+          'rgba(248,92,76,1) 33%,' +
+          'rgba(219,89,74,1) 100%' +
+        ');'
       }
     },
   },
