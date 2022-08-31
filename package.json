@@ -3,8 +3,8 @@
   "version": "2.0.0",
   "description": "Project build files for DelaneyMethod",
   "scripts": {
-    "build:dev:css": "cross-env NODE_ENV=development postcss ./src/scss/styles.scss -o ./public/assets/css/styles.css --watch",
-    "build:prod:css": "cross-env NODE_ENV=production postcss ./src/scss/styles.scss -o ./public/assets/css/styles.css"
+    "build:dev:css": "cross-env NODE_ENV=development postcss ./src/scss/styles.scss -o ./assets/css/styles.css --watch",
+    "build:prod:css": "cross-env NODE_ENV=production postcss ./src/scss/styles.scss -o ./assets/css/styles.css"
   },
   "keywords": [
     "DelaneyMethod",
